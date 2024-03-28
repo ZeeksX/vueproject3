@@ -6,7 +6,11 @@ body {
 	font-style: normal;
 	font-variation-settings: "wdth" 100, "YTLC" 500;
 }
-.navlist {
+.navbar{
+	margin: 0;
+	padding: 0;
+}
+/*.navlist {
 	display: flex;
 	justify-content: space-between;
     align-items: center;
@@ -31,4 +35,4 @@ body {
 	position: absolute;
 	margin: 1rem 0.5rem;
 	padding-left: 3%;
-}
+}*/
