@@ -9,10 +9,10 @@ body {
 	box-sizing: border-box;
 	background-color: hsl(0, 0%, 98%);
 }
-.nav{
+.nav {
 	margin-bottom: 2rem;
 }
-.navbar{
+.navbar {
 	width: 100%;
 	padding: 8% 5%;
 	display: flex;
@@ -21,23 +21,62 @@ body {
 	box-shadow: 0px 0px 5px #e0e0e0;
 	background-color: white;
 }
-.navbar-fluid-one{
+.navbar-fluid-one {
 	display: flex;
 	align-items: center;
 	width: 50%;
 }
-.navbar-fluid-one h3{
+.navbar-fluid-one h3 {
 	font-size: 1rem;
 	font-weight: 800;
 }
-.navbar-fluid-two{
+.navbar-fluid-two {
 	display: flex;
 	align-items: center;
 }
-.navbar-fluid-two i{
-	margin: 0 1rem 0.5rem 0;	
+.navbar-fluid-two i {
+	margin: 0 1rem 0.5rem 0;
 }
-.navbar-fluid-two h3{
+.navbar-fluid-two h3 {
 	font-size: 1rem;
 }
-
+container {
+	margin: 0 auto;
+	display: block;
+}
+form {
+	margin: 0 auto;
+	color: grey;
+}
+.search-bar{
+	width: 100%;
+	margin: 0 auto;
+}
+.search-bar button {
+	padding: 1rem 2rem;
+	background-color: white;
+}
+button i{
+	color: grey;
+	padding-left: 5%;
+}
+.search-bar .input-group-text {
+	border-right: none;
+	border-color:#ececec;
+}
+.search-bar .input-group-text:focus{
+	outline: none;
+}
+.search-bar .form-control {
+	border-left: none;
+	color: grey;
+	border-color: #ececec;       
+}
+select{
+	box-shadow: none;
+	outline: 0;
+}
+.input-group{
+	box-shadow: 0px 0px 3px #dedede;
+	border-radius: 5px;
+}
