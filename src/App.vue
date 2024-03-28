@@ -6,6 +6,7 @@
 <script>
 import NavBar from './components/NavBar.vue';
 import FullBody from "./components/FullBody.vue"
+import "./scss/styles.scss"
 import "../public/index.css"
 export default {
   name: 'App',
