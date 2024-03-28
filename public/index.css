@@ -1,0 +1,10 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.navlist {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 2.5%;
+}
