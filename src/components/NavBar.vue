@@ -5,15 +5,6 @@
       <i class="fa-regular fa-moon"></i>
       <h3 @click="toggleText">{{ mode }}</h3>
     </nav>-->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <h3 class="navbar-brand" href="#">{{ text }}</h3>
-        <button class="navbar-toggler" @click="toggleText" type="button" data-bs-toggle="collapse"
-          data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-          {{ mode }}
-        </button>
-      </div>
-    </nav>
   </div>
 </template>
 
