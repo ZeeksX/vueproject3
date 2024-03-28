@@ -4,35 +4,7 @@ body {
 	font-family: "Nunito Sans", sans-serif;
 	font-optical-sizing: auto;
 	font-style: normal;
+	font-size: 16px;
 	font-variation-settings: "wdth" 100, "YTLC" 500;
 }
-.navbar{
-	margin: 0;
-	padding: 0;
-}
-/*.navlist {
-	display: flex;
-	justify-content: space-between;
-    align-items: center;
-	flex-direction: row;
-	padding: 2.5% 5%;
-    border-bottom: 2px solid #fafafa;
-    box-shadow: 10px 10px 10px #fafafa;
-}
-.container{
-	color: grey;
-}
-.container input{
-	width: 70%;
-	margin: 2rem auto;
-	display: block;
-	padding: 1rem 2.5rem;
-	border-radius: 0.5rem;
-	border: 1px solid #e6e6e6;
-	box-shadow: 1px 1px 5px #e6e6e6;
-}
-.container i{
-	position: absolute;
-	margin: 1rem 0.5rem;
-	padding-left: 3%;
-}*/
+
