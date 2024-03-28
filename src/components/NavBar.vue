@@ -1,8 +1,9 @@
 <template>
   <div class="navbar">
     <nav class="navlist">
-      <h3>Where in the world?</h3>
-      <h3 @click="toggleText"><i class="fa-regular fa-moon"></i>{{ mode }}</h3>
+      <h3>{{ text }}</h3>
+      <i class="fa-regular fa-moon"></i>
+      <h3 @click="toggleText">{{ mode }}</h3>
     </nav>
   </div>
 </template>
@@ -12,7 +13,8 @@ export default {
   name: 'NavBar',
   data() {
     return {
-      mode: "Dark mode"
+      mode: "Dark mode",
+      text: "Where in the world?"
     }
   },
   methods: {
