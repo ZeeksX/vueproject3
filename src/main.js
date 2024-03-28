@@ -7,5 +7,5 @@ import "../public/index.css"
 
 
 createApp(FullBody).component(".container")
-createApp(NavBar).component(".navbar")
+createApp(NavBar).component(".nav")
 createApp(App).mount('#app')
