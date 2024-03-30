@@ -3,7 +3,7 @@
         <form id="form" @submit.prevent="filterCountry">
             <div class="input-group mb-3 search-bar" id="input-bar">
                 <button type="submit" class="input-group-text" @click="updateCountry"><i class="bi bi-search"></i></button>
-                <input @input="updateCountry" name="searchbar" id="input-field" type="text" class="form-control" :placeholder="text" aria-label="Search"
+                <input @change="updateCountry" name="searchbar" id="input-field" type="text" class="form-control" :placeholder="text" aria-label="Search"
                     v-model="search">
             </div>
         </form>
@@ -18,7 +18,7 @@
                     <h1 class="card-text">{{ country.name.common }}</h1>
                     <p>Population: {{ country.population }}</p>
                     <p>Region: {{ country.region }}</p>
-                    <p>Capital: {{ country.capital }}</p>
+                    <p>Capital: {{ formatCapital(country.capital) }}</p>
                 </div>
             </div>
         </div>
@@ -62,10 +62,16 @@ export default {
             this.filterCountry();
         },
         updateCountry() {
-            this.region= "Filter by Region"
+            this.region = "Filter by Region";
             this.filterCountry();
+        },
+        formatCapital(capital) {
+            if (Array.isArray(capital)) {
+                return capital.join(", ");
+            } else {
+                return capital;
+            }
         }
     }
 };
 </script>
- 
