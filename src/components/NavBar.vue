@@ -25,13 +25,12 @@ export default {
     toggleText() {
       if (this.mode === 'Light Mode') {
         this.mode = 'Dark Mode';
-        document.body.style.backgroundColor = "hsl(207, 26%, 17%)"; 
+        document.body.style.backgroundColor = "hsl(207, 26%, 17%)";
       } else {
         this.mode = 'Light Mode';
-        document.body.style.backgroundColor = "hsl(0, 0%, 98%)"; 
+        document.body.style.backgroundColor = "hsl(0, 0%, 98%)";
       }
     }
   }
 }
 </script>
-

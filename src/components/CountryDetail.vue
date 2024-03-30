@@ -1,6 +1,6 @@
 <template>
     <div class="country-detail">
-        <button type="button" @click="goBack">
+        <button type="button" >
             <i class="bi bi-arrow-left"></i> Back
         </button>
         <div v-if="country" class="card" style="width: 18rem;">
@@ -25,9 +25,6 @@ export default {
         country: Object // Received country data as a prop
     },
     methods: {
-        goBack() {
-            this.$router.go(-1); // Go back to the previous page
-        },
         formatCapital(capital) {
             if (Array.isArray(capital)) {
                 return capital.join(", ");

@@ -1,19 +1,24 @@
-import { createRouter, createWebHistory } from "vue-router";
-import CountryDetail from "./components/CountryDetail.vue";
+import { createRouter, createWebHistory } from 'vue-router';
+import CountryDetail from './components/CountryDetail.vue';
+import HomePage from './components/HomePage.vue';
 
 const routes = [
-	// Other routes
-	{
-		path: "/country/:countryName",
-		name: "CountryDetail",
-		component: CountryDetail,
-		props: true, // Pass route params as props
-	},
+  {
+    path: '/',
+    name: 'HomePage',
+    component: HomePage,
+  },
+  {
+    path: '/country/:selectedCountry',
+    name: 'CountryDetail',
+    component: CountryDetail,
+    props: true,
+  },
 ];
 
 const router = createRouter({
-	history: createWebHistory(),
-	routes,
+  history: createWebHistory(),
+  routes,
 });
 
 export default router;
