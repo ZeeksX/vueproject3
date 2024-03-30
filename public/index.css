@@ -37,10 +37,6 @@ body {
 .navbar-fluid-two h3 {
 	font-size: 1rem;
 }
-container {
-	margin: 0 auto;
-	display: block;
-}
 form {
 	margin: 0 auto;
 	color: grey;
@@ -93,3 +89,7 @@ select {
 	justify-content: center;
 	flex-wrap: wrap;
 }
+.card-img-top[data-v-a100c750]{
+	width: 100%;
+}
+

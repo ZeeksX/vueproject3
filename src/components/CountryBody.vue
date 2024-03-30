@@ -18,18 +18,18 @@
       </select>
     </div>
     <div class="countryCard">
-      <router-link v-for="(country, index) in filteredCountries"
-        :to="{ name: 'CountryDetail', params: { selectedCountry: country } }" class="card" :style="{ width: '18rem' }"
-        :key="index">
-        <img :src="country.flags.svg" class="card-img-top" alt="country-flag" />
+      <div v-for="(country, index) in filteredCountries" :key="index" class="card" style="width: 18rem;">
+        <img :src="country.flags['svg']" class="card-img-top" alt="country-flag" />
         <div class="card-body">
           <h1 class="card-text">{{ country.name.common }}</h1>
           <p><b>Population: </b>{{ country.population }}</p>
           <p><b>Region: </b> {{ country.region }}</p>
           <p><b>Capital: </b> {{ formatCapital(country.capital) }}</p>
         </div>
-      </router-link>
+      </div>
     </div>
+
+
   </div>
 </template>
 
@@ -51,7 +51,7 @@ export default {
         "Antarctic",
       ],
       countriesData: [],
-      filteredCountries: [],
+      filteredCountries: []
     };
   },
   mounted() {
@@ -71,7 +71,6 @@ export default {
         const response = await fetch("https://restcountries.com/v3.1/all");
         this.countriesData = await response.json();
       }
-      this.filteredCountries = this.countriesData;
     },
     updateRegion() {
       this.search = this.region;
@@ -91,3 +90,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.card-img-top {
+  width: 200px;
+  height: auto;
+}
+
+.card-body {
+  margin-top: 20px;
+}
+</style>

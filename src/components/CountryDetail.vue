@@ -3,7 +3,7 @@
         <button type="button" >
             <i class="bi bi-arrow-left"></i> Back
         </button>
-        <div v-if="country" class="card" style="width: 18rem;">
+        <div v-if="country" class="card" >
             <img :src="country.flags.svg" class="card-img-top" alt="country-flag">
             <div class="card-body">
                 <h1>{{ country.name.common }}</h1>
