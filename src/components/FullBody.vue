@@ -1,13 +1,13 @@
 <template>
     <div class="container">
         <form id="form" @submit.prevent="filterCountry">
-            <div class="input-group mb-3 search-bar">
-                <button type="submit" class="input-group-text"><i class="bi bi-search"></i></button>
-                <input name="searchbar" type="text" class="form-control" :placeholder="text" aria-label="Search"
+            <div class="input-group mb-3 search-bar" id="input-bar">
+                <button type="submit" class="input-group-text" @click="updateCountry"><i class="bi bi-search"></i></button>
+                <input @input="updateCountry" name="searchbar" type="text" class="form-control" :placeholder="text" aria-label="Search"
                     v-model="search">
             </div>
         </form>
-        <select id="region" @change="filterCountry" v-model="search">
+        <select id="region" @change="updateRegion" v-model="region">
             <option disabled selected>Filter by Region</option>
             <option v-for="(continent, index) in Continents" :key="index">{{ continent }}</option>
         </select>
@@ -31,14 +31,14 @@ export default {
     data() {
         return {
             text: "Search for a country...",
-            search: "", // Set search to empty initially
-            Continents: ["Filter by Region", "Africa", "Asia", "Europe", "Americas", "Oceania", "Antarctica"],
+            search: "",
+            region: "Filter by Region",
+            Continents: ["Africa", "Asia", "Europe", "Americas", "Oceania", "Antarctica"],
             countriesData: [],
             filteredCountries: []
         };
     },
     mounted() {
-        // Trigger filterCountry on mount to apply default filter
         this.filterCountry();
     },
     methods: {
@@ -46,7 +46,7 @@ export default {
             await this.getData();
             this.filteredCountries = this.countriesData.filter(country => {
                 const searchMatch = country.name.common.toLowerCase().includes(this.search.toLowerCase());
-                const regionMatch = country.region.toLowerCase().includes(this.search.toLowerCase());
+                const regionMatch = country.region.toLowerCase().includes(this.region.toLowerCase());
                 return searchMatch || regionMatch;
             });
         },
@@ -55,8 +55,17 @@ export default {
                 const response = await fetch("https://restcountries.com/v3.1/all");
                 this.countriesData = await response.json();
             }
-            this.filteredCountries = this.countriesData; // Initialize filteredCountries
+            this.filteredCountries = this.countriesData;
+        },
+        updateRegion() {
+            this.search = this.region;
+            this.filterCountry();
+        },
+        updateCountry() {
+            this.region= "Filter by Region"
+            this.filterCountry();
         }
     }
 };
 </script>
+ 

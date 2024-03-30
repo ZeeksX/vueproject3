@@ -60,8 +60,9 @@ button i{
 .search-bar .input-group-text {
 	border-right: none;
 	border-color:#ececec;
+	outline: none;
 }
-.search-bar .input-group-text:focus{
+.search-bar .input-group-text:active{
 	outline: none;
 }
 .search-bar .form-control {
@@ -73,7 +74,8 @@ select{
 	box-shadow: none;
 	outline: 0;
 }
-.input-group{
-	box-shadow: 0px 0px 3px #dedede;
+
+#input-bar{
+	box-shadow: 0px 0px 4px #dedede;
 	border-radius: 5px;
 }
