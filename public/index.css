@@ -74,8 +74,10 @@ select{
 	box-shadow: none;
 	outline: 0;
 }
-
 #input-bar{
 	box-shadow: 0px 0px 4px #dedede;
 	border-radius: 5px;
+}
+#input-field:focus{
+	box-shadow: none;
 }
