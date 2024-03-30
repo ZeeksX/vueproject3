@@ -18,18 +18,26 @@
       </select>
     </div>
     <div class="countryCard">
-      <div v-for="(country, index) in filteredCountries" :key="index" class="card" style="width: 18rem;">
-        <img :src="country.flags['svg']" class="card-img-top" alt="country-flag" />
-        <div class="card-body">
+      <div v-for="(country, index) in filteredCountries" class="card" style="width: 18rem" :key="index"
+        @click="updateCountries(index)" :class="{ selected: selectedIndex === index }">
+        <img :src="country.flags.svg" class="card-img-top" alt="country-flag" />
+        <div v-if="selectedIndex !== index" class="card-body">
           <h1 class="card-text">{{ country.name.common }}</h1>
           <p><b>Population: </b>{{ country.population }}</p>
           <p><b>Region: </b> {{ country.region }}</p>
           <p><b>Capital: </b> {{ formatCapital(country.capital) }}</p>
         </div>
+        <div v-else class="card-body">
+          <h1>{{ country.name.common }}</h1>
+          <p><b>Native Name: </b>{{ country.nativeName }}</p>
+          <p><b>Population: </b>{{ country.population }}</p>
+          <p><b>Region: </b>{{ country.region }}</p>
+          <p><b>Sub Region: </b>{{ country.subregion }}</p>
+          <p><b>Capital: </b>{{ formatCapital(country.capital) }}</p>
+          <p><b>Top Level Domain: </b>{{ country.topLevelDomain }}</p>
+        </div>
       </div>
     </div>
-
-
   </div>
 </template>
 
@@ -51,7 +59,8 @@ export default {
         "Antarctic",
       ],
       countriesData: [],
-      filteredCountries: []
+      filteredCountries: [],
+      selectedIndex: null,
     };
   },
   mounted() {
@@ -61,8 +70,12 @@ export default {
     async filterCountry() {
       await this.getData();
       this.filteredCountries = this.countriesData.filter((country) => {
-        const searchMatch = country.name.common.toLowerCase().includes(this.search.toLowerCase());
-        const regionMatch = country.region.toLowerCase().includes(this.region.toLowerCase());
+        const searchMatch = country.name.common
+          .toLowerCase()
+          .includes(this.search.toLowerCase());
+        const regionMatch = country.region
+          .toLowerCase()
+          .includes(this.region.toLowerCase());
         return searchMatch || regionMatch;
       });
     },
@@ -70,7 +83,10 @@ export default {
       if (this.countriesData.length === 0) {
         const response = await fetch("https://restcountries.com/v3.1/all");
         this.countriesData = await response.json();
+        
       }
+      this.filteredCountries = this.countriesData;
+      console.log(this.filteredCountries)
     },
     updateRegion() {
       this.search = this.region;
@@ -79,6 +95,23 @@ export default {
     updateCountry() {
       this.region = "Filter by Region";
       this.filterCountry();
+    },
+    updateCountries(index) {
+      if (this.selectedIndex !== index) {
+        this.selectedIndex = index;
+      } else {
+        this.selectedIndex = null;
+      }
+      const cards = document.querySelectorAll(".card");
+      cards.forEach((card, i) => {
+        if (i !== index) {
+          if (this.selectedIndex === null) {
+            card.style.display = "flex";
+          } else {
+            card.style.display = "none";
+          }
+        }
+      });
     },
     formatCapital(capital) {
       if (Array.isArray(capital)) {
@@ -90,14 +123,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.card-img-top {
-  width: 200px;
-  height: auto;
-}
-
-.card-body {
-  margin-top: 20px;
-}
-</style>
