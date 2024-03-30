@@ -149,16 +149,16 @@ export default {
       }
     },
     toggleCard(clickedCountry) {
-      // Loop through all countries
-      this.filteredCountries.forEach(country => {
-        // Skip the clicked country
-        if (country === clickedCountry) return;
+      // Reset styles for all cards
+      document.querySelectorAll('.card').forEach(card => card.classList.remove('active'));
 
-        // Hide other cards
-        country.isVisible = false; // Assuming you don't have an isVisible property yet
-      });
-
+      // Add 'active' class to the clicked card
+      const clickedCardElement = document.querySelector(`[data-country-id="${clickedCountry.name.common}"]`); // Assuming you have a unique identifier for each country
+      if (clickedCardElement) {
+        clickedCardElement.classList.add('active');
+      }
     }
   }
 };
 </script>
+

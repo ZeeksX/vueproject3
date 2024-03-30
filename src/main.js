@@ -5,6 +5,9 @@ import FullBody from "./components/FullBody.vue"
 import "../public/index.css"
 import './assets/data.json'
 
-createApp(FullBody).component(".container")
-createApp(NavBar).component(".nav")
-createApp(App).mount('#app')
+const app = createApp(App);
+
+app.component("NavBar", NavBar); 
+app.component("FullBody", FullBody); 
+
+app.mount('#app');
