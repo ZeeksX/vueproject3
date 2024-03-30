@@ -1,13 +1,10 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import NavBar from './components/NavBar.vue'
-import FullBody from "./components/FullBody.vue"
-import "../public/index.css"
-import './assets/data.json'
+import { createApp } from "vue";
+import App from "./App.vue";
+import CountryDetail from "./components/CountryDetail.vue";
+import router from "./router.js";
+import "../public/index.css";
 
 const app = createApp(App);
-
-app.component("NavBar", NavBar); 
-app.component("FullBody", FullBody); 
-
-app.mount('#app');
+app.component("CountryDetail", CountryDetail);
+app.use(router);
+app.mount("#app");

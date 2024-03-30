@@ -1,18 +1,17 @@
 <template>
-  <NavBar/>
-  <FullBody/>
+  <div id="app">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import NavBar from './components/NavBar.vue';
-import FullBody from "./components/FullBody.vue"
-import "../public/index.css"
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'App',
-  components: {
-    NavBar,
-    FullBody
+  setup() {
+    const router = useRouter()
+    return { router };
   }
 }
 </script>
