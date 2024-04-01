@@ -18,9 +18,10 @@
       </select>
     </div>
     <div class="countryCard">
-      <div v-for="(country, index) in filteredCountries" class="card"  :key="index"
-        @click="updateCountries(index)" :class="{ selected: selectedIndex === index }">
-        <button v-if="selectedIndex == index" id="back"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
+      <div v-for="(country, index) in filteredCountries" class="card" :key="index" @click="updateCountries(index)"
+        :class="{ selected: selectedIndex === index }">
+        <button v-if="selectedIndex == index" id="back"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+          Back</button>
         <img :src="country.flags.svg" class="card-img-top" :alt="country.flags.alt" />
         <div v-if="selectedIndex !== index" class="card-body">
           <h1 class="card-text">{{ country.name.common }}</h1>
@@ -42,14 +43,16 @@
             <p><b>Currencies: </b>{{ getCurrencies(country) }}</p>
             <p><b>Languages: </b>{{ getLanguages(country) }}</p>
           </div>
-
+          <footer>
+            <p><b>Border Countries: </b></p>
+            <div class="footer-buttons">
+              <button v-for="(button, index) in buttons" :key="index">{{ button }}</button>
+            </div>
+          </footer>
         </div>
       </div>
     </div>
-    <footer>
-      <p><b>Border Countries: </b></p>
-      <button v-for="(button, index) in buttons" :key="index">{{ button }}</button>
-    </footer>
+
 
   </div>
 </template>
@@ -123,7 +126,7 @@ export default {
 
       cards.forEach((card, i) => {
         if (i !== index) {
-          card.style.width=""
+          card.style.width = ""
           if (this.selectedIndex === null) {
             card.style.display = "flex";
             filter.style.display = "block"
