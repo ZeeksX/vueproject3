@@ -9,7 +9,9 @@ body {
 	box-sizing: border-box;
 	background-color: hsl(0, 0%, 98%);
 }
-
+.container{
+	padding-top: 0.5rem;
+}
 .navbar {
 	width: 100%;
 	padding: 8% 5%;
@@ -88,8 +90,37 @@ select {
 	gap: 2rem;
 	justify-content: center;
 	flex-wrap: wrap;
+	
+}
+.card{
+	width: 18rem;
 }
 .card-img-top[data-v-a100c750]{
 	width: 100%;
 }
-
+.selected {
+  background-color: hsl(0, 0%, 98%);
+  border: none;
+  width: 20rem;
+}
+.selected img{
+	border-radius: 0;
+	margin-bottom: 2rem;
+}
+.selected h1{
+	margin-bottom: 2rem;
+	font-weight: 700;
+}
+#back{
+  margin: 1rem 0;
+  width: 7rem;
+  border: 1px solid #f7f7f7;
+  box-shadow: 0px 0px 4px #dedede;
+  background-color: hsl(0, 0%, 98%);
+}
+.detail{
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	margin-bottom: 2rem;
+}

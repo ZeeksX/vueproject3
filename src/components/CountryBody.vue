@@ -18,30 +18,44 @@
       </select>
     </div>
     <div class="countryCard">
-      <div v-for="(country, index) in filteredCountries" class="card" style="width: 18rem" :key="index"
+      <div v-for="(country, index) in filteredCountries" class="card"  :key="index"
         @click="updateCountries(index)" :class="{ selected: selectedIndex === index }">
-        <img :src="country.flags.svg" class="card-img-top" alt="country-flag" />
+        <button v-if="selectedIndex == index" id="back"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button>
+        <img :src="country.flags.svg" class="card-img-top" :alt="country.flags.alt" />
         <div v-if="selectedIndex !== index" class="card-body">
           <h1 class="card-text">{{ country.name.common }}</h1>
           <p><b>Population: </b>{{ country.population }}</p>
           <p><b>Region: </b> {{ country.region }}</p>
-          <p><b>Capital: </b> {{ formatCapital(country.capital) }}</p>
+          <p><b>Capital: </b> {{ format(country.capital) }}</p>
         </div>
-        <div v-else class="card-body">
-          <h1>{{ country.name.common }}</h1>
-          <p><b>Native Name: </b>{{ country.nativeName }}</p>
-          <p><b>Population: </b>{{ country.population }}</p>
-          <p><b>Region: </b>{{ country.region }}</p>
-          <p><b>Sub Region: </b>{{ country.subregion }}</p>
-          <p><b>Capital: </b>{{ formatCapital(country.capital) }}</p>
-          <p><b>Top Level Domain: </b>{{ country.topLevelDomain }}</p>
+        <div v-else class="detail">
+          <div>
+            <h1>{{ country.name.common }}</h1>
+            <p><b>Native Name: </b><span v-html="getNativeName(country)"></span></p>
+            <p><b>Population: </b>{{ country.population }}</p>
+            <p><b>Region: </b>{{ country.region }}</p>
+            <p><b>Sub Region: </b>{{ country.subregion }}</p>
+            <p><b>Capital: </b>{{ format(country.capital) }}</p>
+          </div>
+          <div>
+            <p><b>Top Level Domain: </b>{{ format(country.tld) }}</p>
+            <p><b>Currencies: </b>{{ getCurrencies(country) }}</p>
+            <p><b>Languages: </b>{{ getLanguages(country) }}</p>
+          </div>
+
         </div>
       </div>
     </div>
+    <footer>
+      <p><b>Border Countries: </b></p>
+      <button v-for="(button, index) in buttons" :key="index">{{ button }}</button>
+    </footer>
+
   </div>
 </template>
 
 <script>
+
 export default {
   name: "FullBody",
   data() {
@@ -61,6 +75,7 @@ export default {
       countriesData: [],
       filteredCountries: [],
       selectedIndex: null,
+      buttons: []
     };
   },
   mounted() {
@@ -83,7 +98,6 @@ export default {
       if (this.countriesData.length === 0) {
         const response = await fetch("https://restcountries.com/v3.1/all");
         this.countriesData = await response.json();
-        
       }
       this.filteredCountries = this.countriesData;
       console.log(this.filteredCountries)
@@ -99,27 +113,84 @@ export default {
     updateCountries(index) {
       if (this.selectedIndex !== index) {
         this.selectedIndex = index;
+        this.buttons = []; // Reset buttons array when selecting a new country
+        this.getBorders(this.filteredCountries[index]);
       } else {
         this.selectedIndex = null;
       }
       const cards = document.querySelectorAll(".card");
+      const filter = document.getElementById("filters")
+
       cards.forEach((card, i) => {
         if (i !== index) {
+          card.style.width=""
           if (this.selectedIndex === null) {
             card.style.display = "flex";
+            filter.style.display = "block"
           } else {
             card.style.display = "none";
+            filter.style.display = "none";
           }
         }
       });
     },
-    formatCapital(capital) {
-      if (Array.isArray(capital)) {
-        return capital.join(", ");
+    format(name) {
+      if (Array.isArray(name)) {
+        return name.join(", ");
       } else {
-        return capital;
+        return name;
       }
     },
-  },
-};
+    getNativeName(country) {
+      let nativeName = "";
+      const nativeNames = country.name.nativeName;
+      if (Array.isArray(nativeNames)) {
+        const firstItem = nativeNames[0];
+        if (firstItem) {
+          nativeName = firstItem["official"];
+        }
+      } else if (typeof nativeNames === "object") {
+        const keys = Object.keys(nativeNames);
+        const firstKey = keys[0];
+        if (firstKey) {
+          nativeName = nativeNames[firstKey]["official"];
+        }
+      }
+      return nativeName;
+    },
+    getCurrencies(country) {
+      let currency = ""
+      const currencies = country.currencies
+      if (typeof currencies === "object") {
+        const keys = Object.keys(currencies)
+        currency = currencies[keys]["name"]
+        return currency
+      }
+    },
+    getLanguages(country) {
+      let languages = "";
+      const languageObject = country.languages;
+      if (typeof languageObject === "object") {
+        const keys = Object.keys(languageObject);
+        keys.forEach((key, index) => {
+          if (index > 0) {
+            languages += ", "
+          }
+          languages += languageObject[key];
+        });
+      }
+      return languages;
+    },
+    getBorders(country) {
+      const borders = country.borders;
+      if (Array.isArray(borders) && borders.length > 0) {
+        borders.forEach((border) => {
+          this.buttons.push(border);
+        });
+      } else {
+        this.buttons.push("N/A");
+      }
+    }
+  }
+}
 </script>
