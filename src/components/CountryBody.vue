@@ -7,11 +7,11 @@
             <i class="bi bi-search"></i>
           </button>
           <input @change="updateCountry" name="searchbar" id="input-field" type="text" class="form-control"
-            :placeholder="text" aria-label="Search" v-model="search" />
+            placeholder="Search for a country..." aria-label="Search" v-model="search" />
         </div>
       </form>
       <select id="region" @change="updateRegion" v-model="region">
-        <option disabled selected>Filter by Region</option>
+        <option disabled selected hidden>Filter by Region</option>
         <option v-for="(continent, index) in Continents" :key="index">
           {{ continent }}
         </option>
@@ -63,7 +63,6 @@ export default {
   name: "FullBody",
   data() {
     return {
-      text: "Search for a country...",
       search: "",
       region: "Filter by Region",
       backgroundColor: "red",
@@ -159,24 +158,22 @@ export default {
     getCurrencies(country) {
       let currency = ""
       const currencies = country.currencies
-      if (typeof currencies === "object") {
-        const keys = Object.keys(currencies)
-        currency = currencies[keys]["name"]
-        return currency
-      }
+      const keys = Object.keys(currencies)
+      currency = currencies[keys]["name"]
+      return currency
+
     },
     getLanguages(country) {
       let languages = "";
       const languageObject = country.languages;
-      if (typeof languageObject === "object") {
-        const keys = Object.keys(languageObject);
-        keys.forEach((key, index) => {
-          if (index > 0) {
-            languages += ", "
-          }
-          languages += languageObject[key];
-        });
-      }
+      const keys = Object.keys(languageObject);
+      keys.forEach((key, index) => {
+        if (index > 0) {
+          languages += ", "
+        }
+        languages += languageObject[key];
+      });
+
       return languages;
     },
     getBorders(country) {
