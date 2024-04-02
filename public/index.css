@@ -141,3 +141,6 @@ select {
 	align-items: center;
 	gap: 2rem;
 }
+.white-placeholder::-webkit-input-placeholder {
+    color: white;
+}

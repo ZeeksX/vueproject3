@@ -27,7 +27,7 @@
           <h1 class="card-text">{{ country.name.common }}</h1>
           <p><b>Population: </b>{{ country.population }}</p>
           <p><b>Region: </b> {{ country.region }}</p>
-          <p><b>Capital: </b> {{  getCapital(country.capital) }}</p>
+          <p><b>Capital: </b> {{ getCapital(country.capital) }}</p>
         </div>
         <div v-else class="detail">
           <div>
@@ -168,7 +168,7 @@ export default {
         if (firstKey) {
           nativeName = nativeNames[firstKey]["official"];
         }
-      }else{
+      } else {
         return "N/A"
       }
       return nativeName;
@@ -196,7 +196,7 @@ export default {
           }
           languages += languageObject[key];
         });
-      }else{
+      } else {
         return "N/A"
       }
       return languages;
