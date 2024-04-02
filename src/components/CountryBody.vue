@@ -69,9 +69,9 @@ export default {
       backgroundColor: "red",
       Continents: [
         "Africa",
+        "Americas",
         "Asia",
         "Europe",
-        "Americas",
         "Oceania",
         "Antarctic",
       ],
@@ -85,18 +85,6 @@ export default {
     this.filterCountry();
   },
   methods: {
-    async filterCountry() {
-      await this.getData();
-      this.filteredCountries = this.countriesData.filter((country) => {
-        const searchMatch = country.name.common
-          .toLowerCase()
-          .includes(this.search.toLowerCase());
-        const regionMatch = country.region
-          .toLowerCase()
-          .includes(this.region.toLowerCase());
-        return searchMatch || regionMatch;
-      });
-    },
     async getData() {
       if (this.countriesData.length === 0) {
         const response = await fetch("https://restcountries.com/v3.1/all");
@@ -104,6 +92,14 @@ export default {
       }
       this.filteredCountries = this.countriesData;
       console.log(this.filteredCountries)
+    },
+    async filterCountry() {
+      await this.getData();
+      this.filteredCountries = this.countriesData.filter((country) => {
+        const searchMatch = country.name.common.toLowerCase().includes(this.search.toLowerCase());
+        const regionMatch = country.region.toLowerCase().includes(this.region.toLowerCase());
+        return searchMatch || regionMatch;
+      });
     },
     updateRegion() {
       this.search = this.region;
@@ -116,14 +112,13 @@ export default {
     updateCountries(index) {
       if (this.selectedIndex !== index) {
         this.selectedIndex = index;
-        this.buttons = []; // Reset buttons array when selecting a new country
+        this.buttons = [];
         this.getBorders(this.filteredCountries[index]);
       } else {
         this.selectedIndex = null;
       }
       const cards = document.querySelectorAll(".card");
       const filter = document.getElementById("filters")
-
       cards.forEach((card, i) => {
         if (i !== index) {
           card.style.width = ""

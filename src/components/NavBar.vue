@@ -17,18 +17,21 @@ export default {
   name: 'NavBar',
   data() {
     return {
-      mode: "Light Mode",
+      mode: "Dark Mode",
       text: "Where in the world?"
     }
   },
   methods: {
     toggleText() {
+      const body = document.querySelector("body");
       if (this.mode === 'Light Mode') {
         this.mode = 'Dark Mode';
-        document.body.style.backgroundColor = "hsl(207, 26%, 17%)";
+        body.style.backgroundColor = "hsl(0, 0%, 98%)";
+        body.style.color = "hsl(200, 15%, 8%)";
       } else {
         this.mode = 'Light Mode';
-        document.body.style.backgroundColor = "hsl(0, 0%, 98%)";
+        body.style.backgroundColor = "hsl(207, 26%, 17%)";
+        body.style.color = "white";
       }
     }
   }
