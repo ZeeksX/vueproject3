@@ -28,10 +28,25 @@ export default {
       const cards = document.querySelectorAll(".card")
       const input = document.querySelector("input")
       const btn = document.querySelector("button")
+      const input_bar = document.getElementById("input-bar")
+      const select = document.querySelector("select")
       if (this.mode === 'Light Mode') {
         this.mode = 'Dark Mode';
         body.style.backgroundColor = "hsl(0, 0%, 98%)";
-        nav.style.color = "black";
+        nav.style.color = "hsl(207, 26%, 17%)";
+        nav.style.backgroundColor = "white"
+        nav.style.boxShadow = "0px 0px 4px #dedede"
+        input.style.backgroundColor = "white"
+        input.style.color = "hsl(0, 0%, 52%)"
+        btn.style.backgroundColor="white"
+        btn.style.color = "hsl(0, 0%, 52%)"
+        select.style.backgroundColor = "white"
+        select.style.color = "hsl(0, 0%, 52%)"
+        select.style.boxShadow = "0px 0px 4px #dedede"
+        cards.forEach(card=>{
+          card.style.backgroundColor = "white"
+          card.style.color ="hsl(207, 26%, 17%)"
+        })
       } else {
         this.mode = 'Light Mode';
         body.style.backgroundColor = "hsl(207, 26%, 17%)";
@@ -40,8 +55,15 @@ export default {
         nav.style.color = "white";
         input.style.backgroundColor = "#2f3f4c"
         input.style.color = "white"
+        input.style.border="none"
+        input_bar.style.color="white"
         btn.style.backgroundColor="#2f3f4c"
         btn.style.color = "white"
+        btn.style.border="none"
+        select.style.backgroundColor = "#2f3f4c"
+        select.style.color = "white"
+        select.style.boxShadow = "0px 0px 4px hsl(207, 26%, 17%)"
+        select.style.border="none"
         cards.forEach(card=>{
           card.style.backgroundColor = "#2f3f4c"
           card.style.color ="white"

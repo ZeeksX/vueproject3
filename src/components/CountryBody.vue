@@ -6,7 +6,7 @@
           <button type="submit" class="input-group-text" @click="updateCountry">
             <i class="bi bi-search"></i>
           </button>
-          <input @change="updateCountry" name="searchbar" id="input-field" type="text" class="form-control"
+          <input @input="updateCountry" name="searchbar" id="input-field" type="text" class="form-control"
             placeholder="Search for a country..." aria-label="Search" v-model="search" />
         </div>
       </form>
@@ -27,7 +27,7 @@
           <h1 class="card-text">{{ country.name.common }}</h1>
           <p><b>Population: </b>{{ country.population }}</p>
           <p><b>Region: </b> {{ country.region }}</p>
-          <p><b>Capital: </b> {{ format(country.capital) }}</p>
+          <p><b>Capital: </b> {{  getCapital(country.capital) }}</p>
         </div>
         <div v-else class="detail">
           <div>
@@ -35,8 +35,8 @@
             <p><b>Native Name: </b><span v-html="getNativeName(country)"></span></p>
             <p><b>Population: </b>{{ country.population }}</p>
             <p><b>Region: </b>{{ country.region }}</p>
-            <p><b>Sub Region: </b>{{ country.subregion }}</p>
-            <p><b>Capital: </b>{{ format(country.capital) }}</p>
+            <p><b>Sub Region: </b>{{ getSubRegion(country.subregion) }}</p>
+            <p><b>Capital: </b>{{ getCapital(country.capital) }}</p>
           </div>
           <div>
             <p><b>Top Level Domain: </b>{{ format(country.tld) }}</p>
@@ -131,11 +131,27 @@ export default {
         }
       });
     },
+    getCapital(country) {
+      if (Array.isArray(country)) {
+        return country.join(", ");
+      } else if (typeof country === "string") {
+        return country;
+      } else {
+        return "N/A";
+      }
+    },
     format(name) {
       if (Array.isArray(name)) {
         return name.join(", ");
       } else {
         return name;
+      }
+    },
+    getSubRegion(country) {
+      if (typeof country === "string") {
+        return country
+      } else {
+        return "N/A"
       }
     },
     getNativeName(country) {
@@ -152,28 +168,37 @@ export default {
         if (firstKey) {
           nativeName = nativeNames[firstKey]["official"];
         }
+      }else{
+        return "N/A"
       }
       return nativeName;
     },
     getCurrencies(country) {
       let currency = ""
       const currencies = country.currencies
-      const keys = Object.keys(currencies)
-      currency = currencies[keys]["name"]
-      return currency
+      if (typeof currencies === "object") {
+        const keys = Object.keys(currencies)
+        currency = currencies[keys]["name"]
+        return currency
+      } else {
+        return "N/A"
+      }
 
     },
     getLanguages(country) {
       let languages = "";
       const languageObject = country.languages;
-      const keys = Object.keys(languageObject);
-      keys.forEach((key, index) => {
-        if (index > 0) {
-          languages += ", "
-        }
-        languages += languageObject[key];
-      });
-
+      if (typeof languageObject === "object") {
+        const keys = Object.keys(languageObject);
+        keys.forEach((key, index) => {
+          if (index > 0) {
+            languages += ", "
+          }
+          languages += languageObject[key];
+        });
+      }else{
+        return "N/A"
+      }
       return languages;
     },
     getBorders(country) {
