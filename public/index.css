@@ -2,17 +2,69 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: "Nunito Sans", sans-serif;
-	font-optical-sizing: auto;
-	font-style: normal;
 	font-size: 16px;
-	font-variation-settings: "wdth" 100, "YTLC" 500;
 	box-sizing: border-box;
-	background-color: hsl(0, 0%, 98%);
-	
 }
-.container{
+.container {
 	padding-top: 0.5rem;
 	font-size: 0.9rem;
+}
+#input-bar {
+	border-radius: 5px;
+	box-shadow: 0px 0px 4px #dedede;
+}
+#input-field:focus {
+	box-shadow: none;
+}
+#filters {
+	margin: 1rem 0;
+}
+.countryCard {
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+	justify-content: center;
+	flex-wrap: wrap;
+	color: hsl(209, 23%, 22%);
+}
+.card {
+	width: 18rem;
+}
+.card-img-top[data-v-a100c750] {
+	width: 100%;
+}
+.selected {
+	border: none;
+	width: 20rem;
+	font-size: 1rem;
+}
+.selected img {
+	border-radius: 0;
+	margin-bottom: 2rem;
+}
+.selected h1 {
+	margin-bottom: 2rem;
+	font-weight: 700;
+}
+#back {
+	margin: 1rem 0;
+	width: 7rem;
+	border: 1px solid #f7f7f7;
+	box-shadow: 0px 0px 4px #dedede;
+	background-color: hsl(0, 0%, 98%);
+}
+.detail {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	margin-bottom: 2rem;
+}
+.footer-buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
 }
 .navbar {
 	width: 100%;
@@ -20,8 +72,7 @@ body {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	box-shadow: 0px 0px 5px #e0e0e0;
-	color: hsl(209, 23%, 22%);
+	box-shadow: 0px 0px 5px #dedede; 
 }
 .navbar-fluid-one {
 	display: flex;
@@ -31,6 +82,7 @@ body {
 .navbar-fluid-one h3 {
 	font-size: 1rem;
 	font-weight: 800;
+	color: inherit; /* Inherit color from body */
 }
 .navbar-fluid-two {
 	display: flex;
@@ -39,6 +91,7 @@ body {
 .navbar-fluid-two i {
 	margin: 0 1rem 0.5rem 0;
 }
+
 .navbar-fluid-two h3 {
 	font-size: 1rem;
 }
@@ -58,7 +111,7 @@ button i {
 	color: grey;
 	padding-left: 5%;
 }
-.form-control{
+.form-control {
 	font-size: 0.7rem;
 }
 .search-bar .input-group-text {
@@ -83,64 +136,60 @@ select {
 	border-radius: 5px;
 	font-size: 0.7rem;
 }
+
+/* Dark mode styles */
+.dark-theme {
+	background-color: hsl(207, 26%, 17%); /* Very Dark Blue */
+	color: hsl(0, 0%, 100%); /* White */
+}
+.dark-theme .navbar {
+	background-color: hsl(209, 23%, 22%);
+	box-shadow: 0px 0px 4px hsl(207, 26%, 17%);
+}
+.dark-theme .search-bar .input-group-text,
+.dark-theme .search-bar .form-control {
+	border-color: transparent;
+	background-color: hsl(209, 23%, 22%); /* Dark Blue */
+	color: hsl(0, 0%, 100%); /* White */
+}
+
+.dark-theme .card,
+.dark-theme select {
+	background-color: hsl(209, 23%, 22%); /* Dark Blue */
+	color: hsl(0, 0%, 100%); /* White */
+	box-shadow: 0px 0px 4px hsl(207, 26%, 17%); /* Dark shadow */
+}
+.dark-theme select {
+	border: 1px solid #06060636;
+}
+
+.dark-theme input::placeholder {
+	color: white; /* White placeholder text */
+}
+
+.dark-theme #input-bar {
+	box-shadow: 0px 0px 4px hsl(207, 26%, 17%); /* Dark shadow */
+	border: 1px solid #06060636;
+}
+.dark-theme button i {
+	color: white;
+}
+/* Light mode styles */
+body .dark-theme {
+	background-color: hsl(0, 0%, 98%); /* Very Light Gray */
+	color: hsl(200, 15%, 8%); /* Very Dark Blue */
+}
+
+.card,
+button,
+input,
+select {
+	background-color: white; /* Dark Gray */
+	color: hsl(207, 26%, 17%); /* Very Dark Blue */
+	transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
 #input-bar {
 	border-radius: 5px;
-	box-shadow: 0px 0px 4px #dedede;
-}
-#input-field:focus {
-	box-shadow: none;
-}
-#filters {
-	margin: 1rem 0;
-}
-.countryCard {
-	display: flex;
-	flex-direction: row;
-	gap: 2rem;
-	justify-content: center;
-	flex-wrap: wrap;
-	color: hsl(209, 23%, 22%);
-}
-.card{
-	width: 18rem;
-}
-.card-img-top[data-v-a100c750]{
-	width: 100%;
-}
-.selected {
-  background-color: hsl(0, 0%, 98%);
-  border: none;
-  width: 20rem;
-  font-size: 1rem;
-}
-.selected img{
-	border-radius: 0;
-	margin-bottom: 2rem;
-}
-.selected h1{
-	margin-bottom: 2rem;
-	font-weight: 700;
-}
-#back{
-  margin: 1rem 0;
-  width: 7rem;
-  border: 1px solid #f7f7f7;
-  box-shadow: 0px 0px 4px #dedede;
-  background-color: hsl(0, 0%, 98%);
-}
-.detail{
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
-	margin-bottom: 2rem;
-}
-.footer-buttons{
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-	gap: 2rem;
-}
-.white-placeholder::-webkit-input-placeholder {
-    color: white;
+	box-shadow: 0px 0px 4px #dedede; /* Light mode shadow */
 }
