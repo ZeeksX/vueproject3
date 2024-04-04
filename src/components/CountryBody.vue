@@ -46,8 +46,8 @@
             </div>
           </div>
           <footer>
-            <p><b>Border Countries: </b></p>
             <div class="footer-buttons">
+              <p><b>Border Countries: </b></p>
               <button v-for="(button, index) in buttons" :key="index">{{ button }}</button>
             </div>
           </footer>

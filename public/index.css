@@ -135,7 +135,7 @@ footer button {
 	box-shadow: 0px 0px 4px #dedede;
 	border: 1px solid #d9d9d9;
 	width: 6.1rem;
-	
+
 	padding: 0.1rem 0.1rem;
 	background-color: white;
 }
@@ -211,30 +211,37 @@ body .dark-theme {
 		font-size: 0.6rem;
 	}
 }
-@media only screen and (min-width: 768px){
-	.selected{
+@media only screen and (min-width: 768px) {
+	.selected {
 		display: flex;
 		flex-direction: row;
 		gap: 7rem;
 		width: 100%;
 	}
-	.selected #contents{
+	.selected #contents {
 		width: 50%;
 		gap: 2rem;
 		display: flex;
 		flex-direction: column;
 	}
-	.selected .detail{
+	.selected .detail {
 		width: 40%;
 		margin-top: 5rem;
 	}
-	.selected #main{
+	.selected #main {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: space-between;
 	}
-	footer{
-		display: block;
+	footer p{
+		margin-bottom: 0;
+	}
+	.footer-buttons {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 1rem;
 	}
 }
