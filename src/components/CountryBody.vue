@@ -18,9 +18,11 @@
     <div class="countryCard">
       <div v-for="(country, index) in filteredCountries" class="card" :key="index" @click="updateCountries(index)"
         :class="{ selected: selectedIndex === index }">
-        <button v-if="selectedIndex == index" id="back"><i class="fa fa-arrow-left" aria-hidden="true"></i>
-          Back</button>
-        <img :src="country.flags.svg" class="card-img-top" :alt="country.flags.alt" />
+        <div id="contents">
+          <button v-if="selectedIndex == index" id="back"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+            Back</button>
+          <img :src="country.flags.svg" class="card-img-top" :alt="country.flags.alt" />
+        </div>
         <div v-if="selectedIndex !== index" class="card-body">
           <h1 class="card-text">{{ country.name.common }}</h1>
           <p><b>Population: </b>{{ country.population }}</p>
@@ -28,18 +30,20 @@
           <p><b>Capital: </b> {{ getCapital(country.capital) }}</p>
         </div>
         <div v-else class="detail">
-          <div>
-            <h1>{{ country.name.common }}</h1>
-            <p><b>Native Name: </b><span v-html="getNativeName(country)"></span></p>
-            <p><b>Population: </b>{{ country.population }}</p>
-            <p><b>Region: </b>{{ country.region }}</p>
-            <p><b>Sub Region: </b>{{ getSubRegion(country.subregion) }}</p>
-            <p><b>Capital: </b>{{ getCapital(country.capital) }}</p>
-          </div>
-          <div>
-            <p><b>Top Level Domain: </b>{{ format(country.tld) }}</p>
-            <p><b>Currencies: </b>{{ getCurrencies(country) }}</p>
-            <p><b>Languages: </b>{{ getLanguages(country) }}</p>
+          <div id="main">
+            <div>
+              <h1>{{ country.name.common }}</h1>
+              <p><b>Native Name: </b><span v-html="getNativeName(country)"></span></p>
+              <p><b>Population: </b>{{ country.population }}</p>
+              <p><b>Region: </b>{{ country.region }}</p>
+              <p><b>Sub Region: </b>{{ getSubRegion(country.subregion) }}</p>
+              <p><b>Capital: </b>{{ getCapital(country.capital) }}</p>
+            </div>
+            <div>
+              <p><b>Top Level Domain: </b>{{ format(country.tld) }}</p>
+              <p><b>Currencies: </b>{{ getCurrencies(country) }}</p>
+              <p><b>Languages: </b>{{ getLanguages(country) }}</p>
+            </div>
           </div>
           <footer>
             <p><b>Border Countries: </b></p>
