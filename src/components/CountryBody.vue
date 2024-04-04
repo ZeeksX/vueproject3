@@ -202,13 +202,19 @@ export default {
     getBorders(country) {
       const borders = country.borders;
       if (Array.isArray(borders) && borders.length > 0) {
-        borders.forEach((border) => {
-          this.buttons.push(border);
+        borders.forEach(borderCode => {
+          const borderCountry = this.countriesData.find(country => country.cca3 === borderCode);
+          if (borderCountry) {
+            this.buttons.push(borderCountry.name.common);
+          } else {
+            this.buttons.push("N/A");
+          }
         });
       } else {
         this.buttons.push("N/A");
       }
     }
+
   }
 }
 </script>
