@@ -67,7 +67,6 @@ export default {
     return {
       search: "",
       region: "Filter by Region",
-      backgroundColor: "red",
       Continents: [
         "Africa",
         "Americas",
@@ -176,16 +175,17 @@ export default {
       return nativeName;
     },
     getCurrencies(country) {
-      let currency = ""
-      const currencies = country.currencies
+      let currency = "";
+      const currencies = country.currencies;
       if (typeof currencies === "object") {
-        const keys = Object.keys(currencies)
-        currency = currencies[keys]["name"]
-        return currency
+        const keys = Object.keys(currencies);
+        if (keys.length > 0) {
+          currency = currencies[keys[0]].name;
+        }
+        return currency;
       } else {
-        return "N/A"
+        return "N/A";
       }
-
     },
     getLanguages(country) {
       let languages = "";
