@@ -215,8 +215,8 @@ body .dark-theme {
 	.selected{
 		display: flex;
 		flex-direction: row;
-		gap: 3rem;
-		width: 80%;
+		gap: 7rem;
+		width: 100%;
 	}
 	.selected #contents{
 		width: 50%;
@@ -224,10 +224,15 @@ body .dark-theme {
 		display: flex;
 		flex-direction: column;
 	}
+	.selected .detail{
+		width: 40%;
+		margin-top: 5rem;
+	}
 	.selected #main{
-		width: 50%;
 		display: flex;
 		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
 	}
 	footer{
 		display: block;
