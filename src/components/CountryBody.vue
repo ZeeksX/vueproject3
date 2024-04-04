@@ -2,11 +2,9 @@
   <div class="container">
     <div id="filters">
       <form id="form" @submit.prevent="filterCountry">
-        <div class="input-group mb-3 search-bar" id="input-bar">
-          <button type="submit" class="input-group-text" @click="updateCountry">
-            <i id="search-icon" class="bi bi-search"></i>
-          </button>
-          <input @input="updateCountry" name="searchbar" id="input-field" type="text" class="form-control"
+        <div id="input-bar">
+          <i id="search-icon" class="bi bi-search"></i>
+          <input @input="updateCountry" name="searchbar" id="input-field" type="text"
             placeholder="Search for a country..." aria-label="Search" v-model="search" />
         </div>
       </form>
