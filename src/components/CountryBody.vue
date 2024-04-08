@@ -124,7 +124,7 @@ export default {
           card.style.width = ""
           if (this.selectedIndex === null) {
             card.style.display = "flex";
-            filter.style.display = "block"
+            filter.style.display = "flex"
           } else {
             card.style.display = "none";
             filter.style.display = "none";
