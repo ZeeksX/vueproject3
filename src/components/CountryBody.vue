@@ -23,7 +23,7 @@
 import CardBody from './CardBody.vue';
 
 export default {
-  name: "FullBody",
+  name: "CountryBody",
   components: {
     CardBody
   },
