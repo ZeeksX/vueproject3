@@ -1,14 +1,40 @@
 <template>
   <div class="countryCard">
-    <div v-for="(country, index) in filteredCountries" class="card" :key="index" @click="selectCountry(index)">
+    <div v-for="(country, index) in filteredCountries" class="card" :key="index" @click="updateCountries(index)"
+      :class="{ selected: selectedIndex === index }">
       <div id="contents">
+        <button v-if="selectedIndex == index" id="back"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+          Back</button>
         <img :src="country.flags.svg" class="card-img-top" :alt="country.flags.alt" />
       </div>
-      <div class="card-body">
+      <div v-if="selectedIndex !== index" class="card-body">
         <h1 class="card-text">{{ country.name.common }}</h1>
         <p><b>Population: </b>{{ country.population }}</p>
         <p><b>Region: </b> {{ country.region }}</p>
         <p><b>Capital: </b> {{ getCapital(country.capital) }}</p>
+      </div>
+      <div v-else class="detail">
+        <h1>{{ country.name.common }}</h1>
+        <div id="main">
+          <div>
+            <p><b>Native Name: </b><span v-html="getNativeName(country)"></span></p>
+            <p><b>Population: </b>{{ country.population }}</p>
+            <p><b>Region: </b>{{ country.region }}</p>
+            <p><b>Sub Region: </b>{{ getSubRegion(country.subregion) }}</p>
+            <p><b>Capital: </b>{{ getCapital(country.capital) }}</p>
+          </div>
+          <div id="sub">
+            <p><b>Top Level Domain: </b>{{ format(country.tld) }}</p>
+            <p><b>Currencies: </b>{{ getCurrencies(country) }}</p>
+            <p><b>Languages: </b>{{ getLanguages(country) }}</p>
+          </div>
+        </div>
+        <footer>
+          <div class="footer-buttons">
+            <p><b>Border Countries: </b></p>
+            <button v-for="(button, index) in buttons" :key="index">{{ button }}</button>
+          </div>
+        </footer>
       </div>
     </div>
   </div>
@@ -19,18 +45,98 @@ export default {
   props: {
     filteredCountries: Array,
   },
+  data() {
+    return {
+      selectedIndex: null,
+    };
+  },
   methods: {
-    selectCountry(index) {
-      this.$emit("updateCountries", index);
+    updateCountries(index) {
+      if (this.selectedIndex !== index) {
+        this.selectedIndex = index;
+        this.buttons = [];
+        this.buttons = this.getBorders(this.filteredCountries[index]);
+      } else {
+        this.selectedIndex = null;
+      }
+      const cards = document.querySelectorAll(".card");
+      const filter = document.getElementById("filters");
+      const screenWidth = window.innerWidth;
+      cards.forEach((card, i) => {
+        if (i !== index) {
+          card.style.width = "";
+          if (this.selectedIndex === null) {
+            card.style.display = "flex";
+            if (screenWidth <= 700) {
+              filter.style.display = "block";
+            } else {
+              filter.style.display = "flex";
+            }
+          } else {
+            card.style.display = "none";
+            filter.style.display = "none";
+          }
+        }
+      });
     },
-    getCapital(capital) {
-      if (Array.isArray(capital)) {
-        return capital.join(", ");
-      } else if (typeof capital === "string") {
-        return capital;
+    getCapital(country) {
+      if (Array.isArray(country)) {
+        return country.join(", ");
+      } else if (typeof country === "string") {
+        return country;
       } else {
         return "N/A";
       }
+    },
+    format(name) {
+      if (Array.isArray(name)) {
+        return name.join(", ");
+      } else {
+        return name;
+      }
+    },
+    getSubRegion(country) {
+      if (typeof country === "string") {
+        return country;
+      } else {
+        return "N/A";
+      }
+    },
+    getNativeName(country) {
+      let nativeName = "";
+      const nativeNames = country.name.nativeName;
+      if (Array.isArray(nativeNames) && nativeNames.length > 0) {
+        nativeName = nativeNames[0].official;
+      } else if (typeof nativeNames === "object") {
+        const firstKey = Object.keys(nativeNames)[0];
+        if (firstKey) {
+          nativeName = nativeNames[firstKey].official;
+        }
+      }
+      return nativeName || "N/A";
+    },
+    getCurrencies(country) {
+      if (country.currencies) {
+        const currency = country.currencies[Object.keys(country.currencies)[0]];
+        return currency ? currency.name : "N/A";
+      }
+      return "N/A";
+    },
+    getLanguages(country) {
+      if (country.languages) {
+        return Object.values(country.languages).join(", ") || "N/A";
+      }
+      return "N/A";
+    },
+    getBorders(country) {
+      const buttons = [];
+      if (country.borders) {
+        country.borders.forEach(borderCode => {
+          const borderCountry = this.filteredCountries.find(country => country.cca3 === borderCode);
+          buttons.push(borderCountry ? borderCountry.name.common : "N/A");
+        });
+      }
+      return buttons.length > 0 ? buttons : ["N/A"];
     },
   },
 };
