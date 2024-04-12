@@ -1,19 +1,4 @@
 <template>
-  <div id="app">
-    <HomePage/>
-  </div>
-</template>
-
-<script>
-import HomePage from "./components/HomePage.vue"
-export default {
-  name: 'App',
-  components:{
-    HomePage,
-  }
-}
-</script>
-<template>
   <div class="countryCard">
     <div v-for="(country, index) in filteredCountries" class="card" :key="index" @click="selectCountry(index)">
       <div id="contents">
