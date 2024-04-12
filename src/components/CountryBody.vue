@@ -30,7 +30,7 @@
           <p><b>Capital: </b> {{ getCapital(country.capital) }}</p>
         </div>
         <div v-else class="detail">
-           <h1>{{ country.name.common }}</h1>
+          <h1>{{ country.name.common }}</h1>
           <div id="main">
             <div>
               <p><b>Native Name: </b><span v-html="getNativeName(country)"></span></p>
@@ -54,13 +54,9 @@
         </div>
       </div>
     </div>
-
-
   </div>
 </template>
-
 <script>
-
 export default {
   name: "FullBody",
   data() {
@@ -118,13 +114,18 @@ export default {
         this.selectedIndex = null;
       }
       const cards = document.querySelectorAll(".card");
-      const filter = document.getElementById("filters")
+      const filter = document.getElementById("filters");
+      const screenWidth = window.innerWidth;
       cards.forEach((card, i) => {
         if (i !== index) {
-          card.style.width = ""
+          card.style.width = "";
           if (this.selectedIndex === null) {
             card.style.display = "flex";
-            filter.style.display = "flex"
+            if (screenWidth <= 700) {
+              filter.style.display = "block";
+            } else {
+              filter.style.display = "flex";
+            }
           } else {
             card.style.display = "none";
             filter.style.display = "none";
