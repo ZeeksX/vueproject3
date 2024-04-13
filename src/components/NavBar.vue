@@ -5,12 +5,13 @@
         <h3 class="navbar-item-one">Where in the world?</h3>
       </div>
       <div class="navbar-fluid-two">
-        <i class="bi bi-moon-fill"></i>
-        <h3 @click="toggleMode" class="navbar-item-two">{{ mode }}</h3>
+        <i class="bi bi-moon-fill" aria-hidden="true"></i>
+        <h3 @click="toggleMode" class="navbar-item-two" tabindex="0" role="button" aria-label="Toggle Dark Mode">{{ mode }}</h3>
       </div>
     </nav>
   </div>
 </template>
+
 <script>
 export default {
   name: 'NavBar',
@@ -23,7 +24,17 @@ export default {
     toggleMode() {
       this.mode = this.mode === 'Light Mode' ? 'Dark Mode' : 'Light Mode';
       document.body.classList.toggle('dark-theme');
+      const announcement = this.mode === 'Light Mode' ? 'Switched to Light Mode' : 'Switched to Dark Mode';
+      this.$emit('announce', announcement);
     }
   }
 }
 </script>
+
+<style scoped>
+  
+  .navbar-item-two:focus {
+    background-color: white;
+    color: grey;
+  }
+</style>

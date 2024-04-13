@@ -1,10 +1,13 @@
 <template>
   <div class="countryCard">
     <div v-for="(country, index) in filteredCountries" class="card" :key="index" @click="updateCountries(index)"
-      :class="{ selected: selectedIndex === index }">
+      :class="{ selected: selectedIndex === index }" tabindex="0" role="button"
+      aria-label="Select country {{ country.name.common }}">
       <div id="contents">
-        <button v-if="selectedIndex == index" id="back"><i class="fa fa-arrow-left" aria-hidden="true"></i>
-          Back</button>
+        <button v-if="selectedIndex == index" id="back" aria-label="Go back">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          Back
+        </button>
         <img :src="country.flags.svg" class="card-img-top" :alt="country.flags.alt" />
       </div>
       <div v-if="selectedIndex !== index" class="card-body">
