@@ -306,6 +306,9 @@ body .dark-theme {
 	}
 	.selected #contents img.card-img-top{
 		height: auto;
+		margin: 0;
+		object-position: center;
+		width: 100%;
 	}
 	#sub {
 		text-align: left;
