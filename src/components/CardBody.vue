@@ -1,10 +1,10 @@
 <template>
   <div class="countryCard">
-    <div v-for="(country, index) in filteredCountries" class="card" :key="index" @click="updateCountries(index)"
+    <div v-for="(country, index) in filteredCountries" :key="index" class="card" @click="updateCountries(index)"
       :class="{ selected: selectedIndex === index }" tabindex="0" role="button"
       :aria-label="'Select country ' + country.name.common">
       <div id="contents">
-        <button v-if="selectedIndex == index" id="back" aria-label="Go back">
+        <button v-if="selectedIndex === index" id="back" aria-label="Go back" tabindex="0">
           <i class="fa fa-arrow-left" aria-hidden="true"></i>
           Back
         </button>
@@ -13,8 +13,8 @@
       <div v-if="selectedIndex !== index" class="card-body">
         <h1 tabindex="0">{{ country.name.common }}</h1>
         <p tabindex="0"><b>Population: </b>{{ country.population }}</p>
-        <p tabindex="0"><b>Region: </b> {{ country.region }}</p>
-        <p tabindex="0"><b>Capital: </b> {{ getCapital(country.capital) }}</p>
+        <p tabindex="0"><b>Region: </b>{{ country.region }}</p>
+        <p tabindex="0"><b>Capital: </b>{{ getCapital(country.capital) }}</p>
       </div>
       <div v-else>
         <DetailBody :country="country" />
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import DetailBody from './DetailBody.vue'
+import DetailBody from './DetailBody.vue';
 
 export default {
   props: {
@@ -42,13 +42,12 @@ export default {
     };
   },
   components: {
-    DetailBody
+    DetailBody,
   },
   methods: {
     updateCountries(index) {
       if (this.selectedIndex !== index) {
         this.selectedIndex = index;
-        this.buttons = [];
         this.buttons = this.getBorders(this.filteredCountries[index]);
       } else {
         this.selectedIndex = null;
@@ -61,11 +60,7 @@ export default {
           card.style.width = "";
           if (this.selectedIndex === null) {
             card.style.display = "flex";
-            if (screenWidth <= 700) {
-              filter.style.display = "block";
-            } else {
-              filter.style.display = "flex";
-            }
+            filter.style.display = screenWidth <= 700 ? "block" : "flex";
           } else {
             card.style.display = "none";
             filter.style.display = "none";
@@ -74,20 +69,10 @@ export default {
       });
     },
     getCapital(country) {
-      if (Array.isArray(country)) {
-        return country.join(", ");
-      } else if (typeof country === "string") {
-        return country;
-      } else {
-        return "N/A";
-      }
+      return Array.isArray(country) ? country.join(", ") : typeof country === "string" ? country : "N/A";
     },
     format(name) {
-      if (Array.isArray(name)) {
-        return name.join(", ");
-      } else {
-        return name;
-      }
+      return Array.isArray(name) ? name.join(", ") : name;
     },
     getBorders(country) {
       const buttons = [];
