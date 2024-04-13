@@ -30,7 +30,6 @@ body {
 .navbar-fluid-two i {
 	margin: 0 1rem 0.5rem 0;
 }
-
 .navbar-fluid-two h3 {
 	font-size: 0.9rem;
 }
@@ -100,14 +99,18 @@ select {
 	font-weight: 900;
 	margin-bottom: 1rem;
 }
+.countryCard img{
+	width: 100%;
+}
 #contents {
 	width: 100%;
 	height: 140px;
-	margin-bottom: 1rem;
 }
-#contents img.card-img-top {
+img.card-img-top {
 	height: 100%;
+	width: 100%;
 	object-fit: cover;
+	object-position: center;
 }
 .card {
 	width: 16rem;
@@ -131,19 +134,18 @@ select {
 	box-shadow: none;
 }
 .selected #contents {
-	height: 270px;
+	height: 220px;
 }
-.selected #contents img.card-img-top {
-	height: 200px;
+.selected img.card-img-top {
+	height: 180px;
 	width: 100%;
-	object-fit: contain;
+	object-fit: cover;
 }
 .selected img {
 	border-radius: 0;
-	margin-bottom: 2rem;
 }
-.selected h1 {
-	margin: 0;
+.selected #contents-two h1 {
+	margin: 2rem 0 1rem;
 	font-size: 1.5rem;
 	font-weight: 900;
 }
@@ -194,7 +196,6 @@ footer button {
 	border: none;
 	height: 48px;
 }
-
 .dark-theme .card,
 .dark-theme select {
 	background-color: hsl(209, 23%, 22%);
@@ -299,7 +300,6 @@ body .dark-theme {
 		margin-bottom: 1rem;
 	}
 	#contents {
-		width: 100%;
 		height: 130px;
 		position: relative;
 		margin-bottom: 0;
@@ -307,6 +307,13 @@ body .dark-theme {
 	#contents img.card-img-top {
 		height: 100%;
 		object-fit: cover;
+	}
+	#contents-two {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+		margin-top: 1.5rem;
 	}
 	.selected {
 		display: flex;
@@ -326,7 +333,7 @@ body .dark-theme {
 		width: 50%;
 	}
 	.selected #contents {
-		width: 50%;
+		width: 70%;
 		display: flex;
 		flex-direction: column;
 		height: auto;

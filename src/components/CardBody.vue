@@ -2,40 +2,26 @@
   <div class="countryCard">
     <div v-for="(country, index) in filteredCountries" class="card" :key="index" @click="updateCountries(index)"
       :class="{ selected: selectedIndex === index }" tabindex="0" role="button"
-      aria-label="Select country {{ country.name.common }}">
+      :aria-label="'Select country ' + country.name.common">
       <div id="contents">
         <button v-if="selectedIndex == index" id="back" aria-label="Go back">
           <i class="fa fa-arrow-left" aria-hidden="true"></i>
           Back
         </button>
-        <img :src="country.flags.svg" class="card-img-top" :alt="country.flags.alt" />
+        <img :src="country.flags.svg" class="card-img-top" :alt="country.flags.alt" tabindex="0" />
       </div>
       <div v-if="selectedIndex !== index" class="card-body">
-        <h1>{{ country.name.common }}</h1>
-        <p><b>Population: </b>{{ country.population }}</p>
-        <p><b>Region: </b> {{ country.region }}</p>
-        <p><b>Capital: </b> {{ getCapital(country.capital) }}</p>
+        <h1 tabindex="0">{{ country.name.common }}</h1>
+        <p tabindex="0"><b>Population: </b>{{ country.population }}</p>
+        <p tabindex="0"><b>Region: </b> {{ country.region }}</p>
+        <p tabindex="0"><b>Capital: </b> {{ getCapital(country.capital) }}</p>
       </div>
-      <div v-else class="detail">
-        <h1>{{ country.name.common }}</h1>
-        <div id="main">
-          <div>
-            <p><b>Native Name: </b><span v-html="getNativeName(country)"></span></p>
-            <p><b>Population: </b>{{ country.population }}</p>
-            <p><b>Region: </b>{{ country.region }}</p>
-            <p><b>Sub Region: </b>{{ getSubRegion(country.subregion) }}</p>
-            <p><b>Capital: </b>{{ getCapital(country.capital) }}</p>
-          </div>
-          <div id="sub">
-            <p><b>Top Level Domain: </b>{{ format(country.tld) }}</p>
-            <p><b>Currencies: </b>{{ getCurrencies(country) }}</p>
-            <p><b>Languages: </b>{{ getLanguages(country) }}</p>
-          </div>
-        </div>
+      <div v-else>
+        <DetailBody :country="country" />
         <footer>
           <div class="footer-buttons">
             <p><b>Border Countries: </b></p>
-            <button v-for="(button, index) in buttons" :key="index">{{ button }}</button>
+            <button v-for="(button, index) in buttons" :key="index" tabindex="0">{{ button }}</button>
           </div>
         </footer>
       </div>
@@ -44,6 +30,8 @@
 </template>
 
 <script>
+import DetailBody from './DetailBody.vue'
+
 export default {
   props: {
     filteredCountries: Array,
@@ -52,6 +40,9 @@ export default {
     return {
       selectedIndex: null,
     };
+  },
+  components: {
+    DetailBody
   },
   methods: {
     updateCountries(index) {
@@ -97,39 +88,6 @@ export default {
       } else {
         return name;
       }
-    },
-    getSubRegion(country) {
-      if (typeof country === "string") {
-        return country;
-      } else {
-        return "N/A";
-      }
-    },
-    getNativeName(country) {
-      let nativeName = "";
-      const nativeNames = country.name.nativeName;
-      if (Array.isArray(nativeNames) && nativeNames.length > 0) {
-        nativeName = nativeNames[0].official;
-      } else if (typeof nativeNames === "object") {
-        const firstKey = Object.keys(nativeNames)[0];
-        if (firstKey) {
-          nativeName = nativeNames[firstKey].official;
-        }
-      }
-      return nativeName || "N/A";
-    },
-    getCurrencies(country) {
-      if (country.currencies) {
-        const currency = country.currencies[Object.keys(country.currencies)[0]];
-        return currency ? currency.name : "N/A";
-      }
-      return "N/A";
-    },
-    getLanguages(country) {
-      if (country.languages) {
-        return Object.values(country.languages).join(", ") || "N/A";
-      }
-      return "N/A";
     },
     getBorders(country) {
       const buttons = [];
