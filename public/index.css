@@ -159,8 +159,7 @@ img.card-img-top {
 .detail {
 	display: flex;
 	flex-direction: column;
-	gap: 1.8rem;
-	margin-bottom: 2rem;
+	justify-content: center;
 }
 .footer-buttons {
 	display: flex;
@@ -313,7 +312,6 @@ body .dark-theme {
 		flex-direction: column;
 		justify-content: center;
 		align-items: flex-start;
-		margin-top: 1.5rem;
 	}
 	.selected {
 		display: flex;
@@ -328,6 +326,11 @@ body .dark-theme {
 		object-position: center;
 		width: 100%;
 	}
+	#detail-body{
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
 	#sub {
 		text-align: left;
 		width: 50%;
@@ -340,7 +343,7 @@ body .dark-theme {
 	}
 	.selected .detail {
 		width: 53%;
-		margin-top: 3.3rem;
+		margin-top: 3rem;
 	}
 	.detail {
 		gap: 0;
@@ -370,6 +373,9 @@ body .dark-theme {
 @media only screen and (min-width: 1024px) {
 	.selected {
 		gap: 4rem;
+	}
+	.selected #contents{
+		width: 50%;
 	}
 	.selected .detail {
 		width: 50%;

@@ -16,14 +16,8 @@
         <p tabindex="0"><b>Region: </b>{{ country.region }}</p>
         <p tabindex="0"><b>Capital: </b>{{ getCapital(country.capital) }}</p>
       </div>
-      <div v-else>
-        <DetailBody :country="country" />
-        <footer>
-          <div class="footer-buttons">
-            <p><b>Border Countries: </b></p>
-            <button v-for="(button, index) in buttons" :key="index" tabindex="0">{{ button }}</button>
-          </div>
-        </footer>
+      <div v-else class="detail">
+        <DetailBody :country="country" :buttons="getBorders(country)" />
       </div>
     </div>
   </div>
@@ -48,7 +42,6 @@ export default {
     updateCountries(index) {
       if (this.selectedIndex !== index) {
         this.selectedIndex = index;
-        this.buttons = this.getBorders(this.filteredCountries[index]);
       } else {
         this.selectedIndex = null;
       }
@@ -70,9 +63,6 @@ export default {
     },
     getCapital(country) {
       return Array.isArray(country) ? country.join(", ") : typeof country === "string" ? country : "N/A";
-    },
-    format(name) {
-      return Array.isArray(name) ? name.join(", ") : name;
     },
     getBorders(country) {
       const buttons = [];
