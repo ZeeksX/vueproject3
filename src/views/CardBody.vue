@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="countryCard">
     <div v-for="(country, index) in filteredCountries" :key="index" class="card" @click="updateCountries(index)"
       :class="{ selected: selectedIndex === index }" tabindex="0" role="button"
@@ -66,6 +66,49 @@ export default {
         });
       }
       return buttons.length > 0 ? buttons : ["N/A"];
+    },
+  },
+};
+</script> -->
+<template>
+  <div class="countryCard">
+    <div v-for="(country, index) in filteredCountries" :key="index" class="card" @click="updateCountries(index)"
+      :class="{ selected: selectedIndex === index }" tabindex="0" role="button"
+      :aria-label="'Select country ' + country.name.common">
+      <div id="contents">
+        <button v-if="selectedIndex === index" id="back" aria-label="Go back" tabindex="0">
+          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+          Back
+        </button>
+        <img :src="country.flags.svg" class="card-img-top" :alt="country.flags.alt" tabindex="0" />
+      </div>
+      <div v-if="selectedIndex !== index" class="card-body">
+        <h1 tabindex="0">{{ country.name.common }}</h1>
+        <p tabindex="0"><b>Population: </b>{{ country.population }}</p>
+        <p tabindex="0"><b>Region: </b>{{ country.region }}</p>
+        <p tabindex="0"><b>Capital: </b>{{ getCapital(country.capital) }}</p>
+      </div>
+      <router-view v-else></router-view>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    filteredCountries: Array,
+  },
+  data() {
+    return {
+      selectedIndex: null,
+    };
+  },
+  methods: {
+    updateCountries(index) {
+      this.selectedIndex = this.selectedIndex === index ? null : index;
+    },
+    getCapital(country) {
+      return Array.isArray(country) ? country.join(", ") : typeof country === "string" ? country : "N/A";
     },
   },
 };
