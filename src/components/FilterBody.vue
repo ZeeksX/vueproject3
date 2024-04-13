@@ -10,7 +10,7 @@
         </form>
         <label for="region" class="sr-only">Filter by Region</label>
         <select id="region" @change="updateRegion" v-model="region" aria-label="Filter by Region">
-            <option disabled selected hidden>Filter by Region</option>      
+            <option disabled selected hidden>Filter by Region</option>
             <option v-for="(continent, index) in Continents" :key="index">{{ continent }}</option>
         </select>
     </div>

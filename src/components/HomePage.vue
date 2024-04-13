@@ -1,15 +1,15 @@
 <template>
     <div class="home-page">
-        <NavBar/>
-        <CountryBody/>
+        <NavBar />
+        <CountryBody />
     </div>
 </template>
 <script>
 import CountryBody from "./CountryBody.vue";
 import NavBar from "./NavBar.vue";
-export default{
+export default {
     name: "HomePage",
-    components:{
+    components: {
         NavBar,
         CountryBody
     }

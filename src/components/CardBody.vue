@@ -54,14 +54,55 @@ export default {
     };
   },
   methods: {
+    // updateCountries(index) {
+    //   if (this.selectedIndex !== index) {
+    //     this.selectedIndex = index;
+    //     this.buttons = [];
+    //     this.buttons = this.getBorders(this.filteredCountries[index]);
+    //   } else {
+    //     this.selectedIndex = null;
+    //   }
+    //   const cards = document.querySelectorAll(".card");
+    //   const filter = document.getElementById("filters");
+    //   const screenWidth = window.innerWidth;
+    //   cards.forEach((card, i) => {
+    //     if (i !== index) {
+    //       card.style.width = "";
+    //       if (this.selectedIndex === null) {
+    //         card.style.display = "flex";
+    //         if (screenWidth <= 700) {
+    //           filter.style.display = "block";
+    //         } else {
+    //           filter.style.display = "flex";
+    //         }
+    //       } else {
+    //         card.style.display = "none";
+    //         filter.style.display = "none";
+    //       }
+    //     }
+    //   });
+    // },
     updateCountries(index) {
+      // Deselect the previously selected card if any
+      const prevSelectedCard = document.querySelector('.selected');
+      if (prevSelectedCard) {
+        prevSelectedCard.setAttribute('tabindex', '-1');
+        prevSelectedCard.setAttribute('aria-selected', 'false');
+      }
+
       if (this.selectedIndex !== index) {
         this.selectedIndex = index;
         this.buttons = [];
         this.buttons = this.getBorders(this.filteredCountries[index]);
+        // Select the currently clicked card
+        const selectedCard = document.querySelector(`.card:nth-child(${index + 1})`);
+        selectedCard.setAttribute('tabindex', '0');
+        selectedCard.setAttribute('aria-selected', 'true');
+        selectedCard.focus();
       } else {
         this.selectedIndex = null;
       }
+
       const cards = document.querySelectorAll(".card");
       const filter = document.getElementById("filters");
       const screenWidth = window.innerWidth;
@@ -82,6 +123,7 @@ export default {
         }
       });
     },
+
     getCapital(country) {
       if (Array.isArray(country)) {
         return country.join(", ");
