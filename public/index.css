@@ -34,7 +34,7 @@ body {
 .navbar-fluid-two h3 {
 	font-size: 0.9rem;
 }
-.navbar-fluid-two h3:hover{
+.navbar-fluid-two h3:hover {
 	cursor: pointer;
 }
 .container {
@@ -97,9 +97,7 @@ select {
 	box-shadow: 0px 0px 4px #dedede;
 	border: 1px solid #fbfbfb;
 }
-.card-img-top[data-v-a100c750] {
-	width: 100%;
-}
+
 .selected {
 	border: none;
 	width: 20rem;
@@ -135,9 +133,9 @@ select {
 	align-items: center;
 	gap: 0.8rem;
 }
-footer p{
+footer p {
 	margin-bottom: 0;
-	width: 100%
+	width: 100%;
 }
 footer button {
 	border-radius: 5px;
@@ -219,29 +217,42 @@ body .dark-theme {
 		font-size: 0.6rem;
 	}
 }
-@media only screen and (min-width: 500px){
-	.navbar{
+@media only screen and (min-width: 500px) {
+	.navbar {
 		padding: 1rem 3rem;
 	}
 }
 @media only screen and (min-width: 700px) {
-	.navbar{
+	.countryCard h1 {
+		font-size: 1.1rem;
+		font-weight: 900;
+	}
+	.navbar {
 		padding: 1rem 4rem;
 	}
-	#filters{
+	#filters {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 	}
-	form{
+	form {
 		width: 40%;
 	}
-	option{
+	option {
 		padding: 1rem 0;
 	}
-	select{
+	select {
 		width: 30%;
 		margin-bottom: 1rem;
+	}
+	#contents {
+		width: 100%;
+		height: 150px;
+		position: relative;
+	}
+	#contents img.card-img-top {
+		height: 100%;
+		object-fit: cover;
 	}
 	.selected {
 		display: flex;
@@ -250,26 +261,27 @@ body .dark-theme {
 		width: 100%;
 		box-shadow: none;
 	}
-	#sub{
-		text-align:left;
+	#sub {
+		text-align: left;
 		width: 50%;
 	}
 	.selected #contents {
 		width: 50%;
 		display: flex;
 		flex-direction: column;
+		height: auto;
 	}
 	.selected .detail {
 		width: 53%;
 		margin-top: 3.3rem;
 	}
-	.detail{
+	.detail {
 		gap: 0;
 	}
-	.selected img{
+	.selected img {
 		max-height: 380px;
 	}
-	.selected h1{
+	.selected h1 {
 		margin-bottom: 1rem;
 	}
 	.selected #main {
@@ -277,7 +289,7 @@ body .dark-theme {
 		flex-direction: row;
 		justify-content: space-between;
 	}
-	footer p{
+	footer p {
 		width: auto;
 	}
 	.footer-buttons {
@@ -288,38 +300,38 @@ body .dark-theme {
 		gap: 1rem;
 	}
 }
-@media only screen and (min-width: 1024px){
-	.selected{
+@media only screen and (min-width: 1024px) {
+	.selected {
 		gap: 4rem;
 	}
-	.selected .detail{
+	.selected .detail {
 		width: 50%;
 	}
-	form{
+	form {
 		width: 40%;
 		margin-left: 0.5rem;
 	}
-	select{
+	select {
 		width: 25%;
 		margin-right: 0.5rem;
 	}
-	.countryCard{
+	.countryCard {
 		gap: 4rem;
 	}
 }
-@media only screen and (min-width: 1440px){
-	.selected{
+@media only screen and (min-width: 1440px) {
+	.selected {
 		gap: 7rem;
 	}
-	.selected .detail{
+	.selected .detail {
 		display: flex;
 		justify-content: center;
 	}
-	form{
+	form {
 		width: 35%;
 		margin-left: 2.5rem;
 	}
-	select{
+	select {
 		width: 15%;
 		margin-right: 2.5rem;
 	}

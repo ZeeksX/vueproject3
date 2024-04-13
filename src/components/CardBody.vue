@@ -8,7 +8,7 @@
         <img :src="country.flags.svg" class="card-img-top" :alt="country.flags.alt" />
       </div>
       <div v-if="selectedIndex !== index" class="card-body">
-        <h1 class="card-text">{{ country.name.common }}</h1>
+        <h1>{{ country.name.common }}</h1>
         <p><b>Population: </b>{{ country.population }}</p>
         <p><b>Region: </b> {{ country.region }}</p>
         <p><b>Capital: </b> {{ getCapital(country.capital) }}</p>
