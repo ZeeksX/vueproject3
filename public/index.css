@@ -93,7 +93,9 @@ select {
 	color: hsl(209, 23%, 22%);
 }
 .card {
-	width: 18rem;
+	width: 16rem;
+	box-shadow: 0px 0px 4px #dedede;
+	border: 1px solid #fbfbfb;
 }
 .card-img-top[data-v-a100c750] {
 	width: 100%;
@@ -102,6 +104,7 @@ select {
 	border: none;
 	width: 20rem;
 	font-size: 1rem;
+	box-shadow: none;
 }
 .selected img {
 	border-radius: 0;
@@ -163,6 +166,7 @@ footer button {
 .dark-theme select {
 	background-color: hsl(209, 23%, 22%);
 	color: hsl(0, 0%, 100%);
+	border: 1px solid #06060636;
 	box-shadow: 0px 0px 4px hsl(207, 26%, 17%);
 }
 .dark-theme select {
@@ -244,6 +248,7 @@ body .dark-theme {
 		flex-direction: row;
 		gap: 2rem;
 		width: 100%;
+		box-shadow: none;
 	}
 	#sub{
 		text-align:left;
@@ -298,6 +303,9 @@ body .dark-theme {
 		width: 25%;
 		margin-right: 0.5rem;
 	}
+	.countryCard{
+		gap: 4rem;
+	}
 }
 @media only screen and (min-width: 1440px){
 	.selected{
@@ -309,10 +317,10 @@ body .dark-theme {
 	}
 	form{
 		width: 35%;
-		margin-left: 1.5rem;
+		margin-left: 2.5rem;
 	}
 	select{
 		width: 15%;
-		margin-right: 1.5rem;
+		margin-right: 2.5rem;
 	}
 }
