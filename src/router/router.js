@@ -1,7 +1,6 @@
-// router.js
 import { createRouter, createWebHistory } from 'vue-router';
-import DetailBody from "../views/DetailBody.vue"
-import CardBody from "../views/CardBody.vue";
+import DetailBody from '../views/DetailBody.vue';
+import CardBody from '../views/CardBody.vue';
 
 const routes = [
   {

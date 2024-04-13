@@ -16,18 +16,12 @@
         <p tabindex="0"><b>Region: </b>{{ country.region }}</p>
         <p tabindex="0"><b>Capital: </b>{{ getCapital(country.capital) }}</p>
       </div>
-      <!-- <div v-else class="detail">
-        <DetailBody :country="country" :buttons="getBorders(country)" />
-      </div> -->
-      <div v-else class="detail">
-      
-      </div>
+      <router-view v-else></router-view>
     </div>
   </div>
 </template>
 
 <script>
-// import DetailBody from './DetailBody.vue';
 export default {
   props: {
     filteredCountries: Array,
@@ -36,9 +30,6 @@ export default {
     return {
       selectedIndex: null,
     };
-  },
-  components: {
-    // DetailBody,
   },
   methods: {
     updateCountries(index) {
