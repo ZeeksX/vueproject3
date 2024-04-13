@@ -26,11 +26,16 @@ export default {
   },
   methods: {
     async getData() {
-      if (this.countriesData.length === 0) {
-        const response = await fetch("https://restcountries.com/v3.1/all");
-        this.countriesData = await response.json();
+      try {
+        if (this.countriesData.length === 0) {
+          const response = await fetch("https://restcountries.com/v3.1/all");
+          this.countriesData = await response.json();
+        }
+        this.updateFilter();
+      } catch (error) {
+        console.log(error)
       }
-      this.updateFilter();
+
     },
     updateFilter({ search = "", region = "Filter by Region" } = {}) {
       this.filteredCountries = this.countriesData.filter((country) => {
