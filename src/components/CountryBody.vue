@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import CardBody from '../views/CardBody.vue';
+import CardBody from './CardBody.vue';
 import FilterBody from './FilterBody.vue';
 
 export default {
