@@ -69,6 +69,9 @@ body {
 #input-bar:focus-within {
 	box-shadow: 0px 0px 4px blue;
 }
+#input-bar:hover{
+	cursor: pointer;
+}
 select {
 	padding: 0.7rem 1rem;
 	box-shadow: 0px 0px 4px #dedede;
@@ -80,6 +83,9 @@ select {
 }
 select:focus {
 	box-shadow: 0px 0px 4px blue;
+}
+select:hover{
+	cursor: pointer;
 }
 .card,
 input,
