@@ -278,6 +278,11 @@ body .dark-theme {
 		padding: 1rem 3rem;
 	}
 }
+@media only screen and (min-width: 576px){
+	.container{
+		max-width: 90%;
+	}
+}
 @media only screen and (min-width: 700px) {
 	.countryCard h1 {
 		font-size: 1.1rem;
