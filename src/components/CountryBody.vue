@@ -1,19 +1,20 @@
 <template>
   <div class="container">
     <FilterBody @filter="updateFilter" />
-    <CardBody :filteredCountries="filteredCountries" :countriesData="countriesData"/>
+    <CardPage :filteredCountries="filteredCountries" :countriesData="countriesData" />
   </div>
 </template>
 
 <script>
-import CardBody from './CardBody.vue';
 import FilterBody from './FilterBody.vue';
 
+import CardPage from './CardPage.vue';
 export default {
   name: "CountryBody",
   components: {
-    CardBody,
+    CardPage,
     FilterBody,
+
   },
   data() {
     return {
@@ -33,7 +34,7 @@ export default {
         }
         this.updateFilter();
       } catch (error) {
-        console.log(error)
+        console.error(error);
       }
 
     },

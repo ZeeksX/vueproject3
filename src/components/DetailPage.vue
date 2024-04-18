@@ -1,10 +1,10 @@
 <template>
     <div class="contents">
-        <button id="back" aria-label="Go back" tabindex="0">
+        <button v-show="getNativeName(country)" id="back" aria-label="Go back" tabindex="0">
             <i class="fa fa-arrow-left" aria-hidden="true"></i>
             Back
         </button>
-        <CountryFlag :country="country" />
+        <img :src="country.flags.svg" class="card-img-top" :alt="country.flags.alt" />
     </div>
     <div class="detail">
         <div id="detail-body">
@@ -37,14 +37,11 @@
 </template>
 
 <script>
-import CountryFlag from './CountryFlag.vue';
+
 export default {
     props: {
         country: Object,
         buttons: Array
-    },
-    components: {
-        CountryFlag
     },
     methods: {
         getCapital(country) {
@@ -118,7 +115,6 @@ export default {
             }
             return languages;
         },
-        
     }
 };
 </script>
