@@ -25,6 +25,8 @@ export const useCountryStore = defineStore("country", {
         const regionMatch = country.region.toLowerCase().includes(region.toLowerCase());
         return searchMatch || regionMatch;
       });
+      
+      this.currentPage = 1;
     },
     changePage(page) {
       this.currentPage = page;
