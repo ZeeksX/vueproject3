@@ -16,7 +16,7 @@
                     <li class="page-item" :class="{ disabled: currentPage === totalPages }">
                         <a class="page-link" href="#" @click.prevent="nextPage">Next</a>
                     </li>
-                    <li class="page-item" :class="{ disabled: currentPage === 1 }">
+                    <li class="page-item" :class="{ disabled: currentPage === totalPages }">
                         <a class="page-link" href="#" @click.prevent="lastPage"><i class="bi bi-chevron-double-right"></i></a>
                     </li>
                 </div>
