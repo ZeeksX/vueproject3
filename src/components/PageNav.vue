@@ -2,7 +2,10 @@
     <div id="page">
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">
-                <div id="page-items">
+                <div id="page-items" @click="goToTop">
+                     <li class="page-item" :class="{ disabled: currentPage === 1 }">
+                        <a class="page-link" href="#" @click.prevent="firstPage"><i class="bi bi-chevron-double-left"></i></a>
+                    </li>
                     <li class="page-item" :class="{ disabled: currentPage === 1 }">
                         <a class="page-link" href="#" @click.prevent="prevPage">Previous</a>
                     </li>
@@ -12,6 +15,9 @@
                     </li>
                     <li class="page-item" :class="{ disabled: currentPage === totalPages }">
                         <a class="page-link" href="#" @click.prevent="nextPage">Next</a>
+                    </li>
+                    <li class="page-item" :class="{ disabled: currentPage === 1 }">
+                        <a class="page-link" href="#" @click.prevent="lastPage"><i class="bi bi-chevron-double-right"></i></a>
                     </li>
                 </div>
             </ul>
@@ -27,14 +33,10 @@ export default {
     },
     computed: {
         displayedPages() {
-            if (window.innerWidth < 768) {
-                const maxPages = Math.min(4, this.totalPages);
+                const maxPages = Math.min(3, this.totalPages);
                 const startPage = Math.max(1, this.currentPage - Math.floor(maxPages / 2));
                 const endPage = Math.min(startPage + maxPages - 1, this.totalPages);
                 return this.getDisplayedPages(startPage, endPage);
-            } else {
-                return this.getAllPages(this.totalPages);
-            }
         },
     },
     methods: {
@@ -65,6 +67,18 @@ export default {
                 this.$emit('changePage', this.currentPage - 1);
             }
         },
+        firstPage(){
+            this.$emit('changePage', 1);
+        },
+        lastPage(){
+             this.$emit('changePage', this.totalPages);
+        },
+        goToTop(){
+            const item = document.querySelector(".nav");
+			if (item) {
+				item.scrollIntoView({ behavior: "smooth" });
+			}
+        }
     },
 };
 </script>
