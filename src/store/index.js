@@ -32,15 +32,4 @@ export const useCountryStore = defineStore("country", {
       this.currentPage = page;
     },
   },
-
-  getters: {
-    paginatedCountries() {
-      const start = (this.currentPage - 1) * this.perPage;
-      const end = start + this.perPage;
-      return this.filteredCountries.slice(start, end);
-    },
-    totalPages() {
-      return Math.ceil(this.filteredCountries.length / this.perPage);
-    },
-  },
 });
