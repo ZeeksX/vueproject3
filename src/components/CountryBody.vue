@@ -1,9 +1,10 @@
 <template>
   <div class="container">
-    <FilterBody @filter="updateFilter" />
-    <CardPage :filteredCountries="paginatedCountries" />
+    <FilterBody/>
+    <CardPage :filteredCountries="countryStore.paginatedCountries" />
     <PageNav :currentPage="countryStore.currentPage" :totalPages="countryStore.totalPages"
       @changePage="countryStore.changePage" />
+    <img src="../assets/error-image.svg" alt="error-image" id="error-image"/>
   </div>
 </template>
 
@@ -27,27 +28,18 @@ export default {
       countryStore: useCountryStore(),
     };
   },
-
-  computed: {
-    paginatedCountries() {
-      const start = (this.countryStore.currentPage - 1) * this.countryStore.perPage;
-      const end = start + this.countryStore.perPage;
-      return this.countryStore.filteredCountries.slice(start, end);
-    },
-  },
-
   mounted() {
-    this.updateData();
-  },
-
-  methods: {
-    async updateData() {
-      await this.countryStore.fetchData();
-      this.updateFilter();
-    },
-    updateFilter({ search = '', region = 'Filter by Region' } = {}) {
-      this.countryStore.updateFilter({ search, region });
-    },
+    this.countryStore.fetchData();
   },
 };
 </script>
+<style>
+#error-image{
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 450px;
+  height: 50%;
+  margin: 0 auto;
+}
+</style>
