@@ -4,14 +4,15 @@
             <label for="input-field" class="sr-only">Search for a country</label>
             <div id="input-bar">
                 <i id="search-icon" class="bi bi-search"></i>
-                <input @input="updateCountry" name="searchbar" id="input-field" type="text"
-                    placeholder="Search for a country..." aria-label="Search for a country" v-model="search" />
+                <input v-model="search" @input="filterCountry" name="searchbar" id="input-field" type="text"
+                    placeholder="Search for a country..." aria-label="Search for a country" />
             </div>
         </form>
         <label for="region" class="sr-only">Filter by Region</label>
-        <select name="region" id="region" @change="updateRegion" aria-label="Filter by Region">
-            <option disabled selected hidden>Filter by Region</option>
-            <option v-for="(continent) in Continents" :key="continent" :value="continent">{{ continent }}</option>
+        <select v-model="selectedRegion" @change="filterCountry" name="region" id="region"
+            aria-label="Filter by Region">
+            <option disabled value="">Filter by Region</option>
+            <option v-for="continent in continents" :key="continent" :value="continent">{{ continent }}</option>
         </select>
     </div>
 </template>
@@ -23,7 +24,7 @@ export default {
         return {
             search: "",
             selectedRegion: "",
-            Continents: [
+            continents: [
                 "Africa",
                 "Americas",
                 "Asia",
@@ -39,27 +40,21 @@ export default {
             this.countryStore.updateFilter({ search: this.search, region: this.selectedRegion });
             this.displayErrorMessage();
         },
-        updateCountry(event) {
-            this.search = event.target.value;
-            this.filterCountry();
-        },
-        updateRegion(event) {
-            this.selectedRegion = event.target.value;
-            this.filterCountry();
-        },
         displayErrorMessage() {
-            const page = document.getElementById("page")
-            const errorImg = document.getElementById("error-image")
-           
-            if (this.countryStore.filteredCountries.length === 0) {
-                console.error("No country found")
-                page.style.display="none"
-                errorImg.style.display="flex"
-            } else if (this.countryStore.filteredCountries.length <= 8){
-                page.style.justifyContent="flex-end"
-                page.style.marginTop = "7.5rem"
-            }
+            const page = document.getElementById("page");
+            const errorImg = document.getElementById("error-image");
 
+            page.style.display = this.countryStore.filteredCountries.length === 0 ? "none" : "flex";
+            errorImg.style.display = this.countryStore.filteredCountries.length === 0 ? "flex" : "none";
+
+            if (this.countryStore.filteredCountries.length <= 4) {
+                page.style.marginTop = "4.5rem";
+            } else if (this.countryStore.filteredCountries.length <= 8) {
+                page.style.marginTop = "2rem";
+                page.style.justifyContent = "center";
+            } else {
+                page.style.marginTop = "0rem";
+            }
         },
     },
 };
