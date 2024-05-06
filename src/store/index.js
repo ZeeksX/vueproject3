@@ -21,6 +21,7 @@ export const useCountryStore = defineStore("country", {
 			}
 		},
 		updateFilter({ search = "", region = "" } = {}) {
+			this.currentPage =1;
 			this.filteredCountries = this.filterBySearch(
 				this.filterByRegion(region),
 				search
