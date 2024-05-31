@@ -1,3 +1,10 @@
+:root{
+	--background-color-dark:  hsl(207, 26%, 17%);
+	--background-color-items-dark: hsl(209, 23%, 22%);
+	--box-shadow-dark: 0px 0px 4px #dedede;
+	--box-shadow-light: 0px 0px 4px hsl(207, 26%, 17%);
+	--border-dark: 1px solid #06060636;
+}
 body {
 	margin: 0;
 	padding: 0;
@@ -36,17 +43,25 @@ body {
 .navbar-fluid-two h3:hover {
 	cursor: pointer;
 }
+.navbar-fluid-two h3:focus {
+	outline: none;
+	box-shadow: 0px 0px 4px blue;
+}
+.dark-theme .navbar-fluid-two h3:focus{
+	box-shadow: var(--box-shadow-dark);
+}
 .container {
 	padding-top: 0.5rem;
 	font-size: 0.9rem;
 	padding-bottom: 2rem;
+	width: 100%;
 }
 #filters {
-	margin: 1rem 0;
+	margin: 2rem 0;
 }
 #input-bar {
 	border-radius: 5px;
-	box-shadow: 0px 0px 4px #dedede;
+	box-shadow: var(--box-shadow-dark);
 	height: 50px;
 	display: flex;
 	justify-content: center;
@@ -69,12 +84,12 @@ body {
 #input-bar:focus-within {
 	box-shadow: 0px 0px 4px blue;
 }
-#input-bar:hover{
+#input-bar:hover {
 	cursor: pointer;
 }
 select {
 	padding: 0.7rem 1rem;
-	box-shadow: 0px 0px 4px #dedede;
+	box-shadow: var(--box-shadow-dark);
 	border: 1px solid #fbfbfb;
 	width: 50%;
 	outline: 0;
@@ -84,14 +99,14 @@ select {
 select:focus {
 	box-shadow: 0px 0px 4px blue;
 }
-select:hover{
+select:hover {
 	cursor: pointer;
 }
 .card,
 input,
 select {
 	background-color: white;
-	color: hsl(207, 26%, 17%);
+	color: var(--background-color-items-dark);
 }
 .countryCard {
 	display: flex;
@@ -99,14 +114,14 @@ select {
 	gap: 2.5rem;
 	justify-content: center;
 	flex-wrap: wrap;
-	color: hsl(209, 23%, 22%);
+	color: var(--background-color-items-dark);
 }
 .countryCard h1 {
 	font-size: 1.1rem;
 	font-weight: 900;
 	margin-bottom: 1rem;
 }
-.countryCard img{
+.countryCard img {
 	width: 100%;
 }
 #contents {
@@ -121,15 +136,19 @@ img.card-img-top {
 }
 .card {
 	width: 16rem;
-	box-shadow: 0px 0px 4px #dedede;
+	box-shadow: var(--box-shadow-dark);
 	border: 1px solid #fbfbfb;
+	height: 330px;
+}
+.card a {
+	height: inherit;
 }
 .card:focus {
 	box-shadow: 0px 0px 4px blue;
 	outline: none;
 }
-.dark-theme .card:focus{
-	box-shadow: 0px 0px 4px #dedede;
+.dark-theme .card:focus {
+	box-shadow: var(--box-shadow-dark);
 	outline: none;
 }
 .card-body p {
@@ -144,7 +163,7 @@ img.card-img-top {
 .selected:focus {
 	box-shadow: none;
 }
-.dark-theme .selected:focus{
+.dark-theme .selected:focus {
 	box-shadow: none;
 }
 .selected #contents {
@@ -168,7 +187,7 @@ img.card-img-top {
 	margin: 1rem 0;
 	width: 6rem;
 	border: 1px solid #f7f7f7;
-	box-shadow: 0px 0px 4px #dedede;
+	box-shadow: var(--box-shadow-dark);
 	background-color: white;
 }
 .detail {
@@ -190,70 +209,79 @@ footer p {
 }
 footer button {
 	border-radius: 5px;
-	box-shadow: 0px 0px 4px #dedede;
+	box-shadow: var(--box-shadow-dark);
 	border: 1px solid #d9d9d9;
 	min-width: 6.1rem;
 	padding: 0.1rem 0.1rem;
 	background-color: white;
 }
-.pagination{
+.pagination {
 	margin: 3rem 0 0;
 }
-#page{
+#page {
 	justify-content: center;
+	max-width: 100%;
+	width: 80%;
+	margin: auto;
 }
-#page-items{
+#page-items {
 	display: flex;
-	box-shadow: 0px 0px 4px #dedede;
+	box-shadow: var(--box-shadow-dark);
 	border: 1px solid #d9d9d9;
 	border-radius: 6px;
 }
-.page-link{
-	color: hsl(209, 23%, 22%);
+.page-link {
+	color: var(--background-color-items-dark);
 }
-.page-link:active{
-	background-color: hsl(209, 23%, 22%);
-	color: hsl(0, 0%, 100%);
+.page-link:active {
+	background-color: lightgray;
+	color: var(--background-color-items-dark);
 	box-shadow: none;
 }
-.active>.page-link{
-	background-color: hsl(209, 23%, 22%);
-	box-shadow: 0px 0px 4px hsl(207, 26%, 17%);
-	color: hsl(0, 0%, 100%);
+.page-link:focus {
 	outline: none;
+	border: 1px solid #dedede;
+	box-shadow: none;
+}
+.active > .page-link {
+	box-shadow: 0px 0px 1px var(--background-color-dark);
+	background-color: #dedede;
+	color: var(--background-color-items-dark);
+	border: 1px solid #dedede;
+
 }
 .dark-theme {
-	background-color: hsl(207, 26%, 17%);
+	background-color: var(--background-color-dark);
 	color: hsl(0, 0%, 100%);
 }
 .dark-theme .navbar {
-	background-color: hsl(209, 23%, 22%);
-	box-shadow: 0px 0px 4px hsl(207, 26%, 17%);
+	background-color: var(--background-color-items-dark);
+	box-shadow: var(--box-shadow-light);
 }
 .dark-theme #input-field {
-	background-color: hsl(209, 23%, 22%);
+	background-color: var(--background-color-items-dark);
 	color: hsl(0, 0%, 100%);
 	border: none;
 	height: 48px;
 }
 .dark-theme .card,
 .dark-theme select {
-	background-color: hsl(209, 23%, 22%);
+	background-color: var(--background-color-items-dark);
 	color: hsl(0, 0%, 100%);
-	border: 1px solid #06060636;
-	box-shadow: 0px 0px 4px hsl(207, 26%, 17%);
+	border: var(--border-dark);
+	box-shadow: var(--box-shadow-light);
 }
 .dark-theme #input-bar:focus-within {
-	box-shadow: 0px 0px 4px white;
+	box-shadow: var(--box-shadow-dark);
 }
 .dark-theme select {
-	border: 1px solid #06060636;
+	border: var(--border-dark);
 }
 .dark-theme select:focus {
-	box-shadow: 0px 0px 4px white;
+	box-shadow: var(--box-shadow-dark);
 }
 .dark-theme .selected {
-	background-color: hsl(207, 26%, 17%);
+	background-color: var(--background-color-dark);
 	border: none;
 	border-radius: unset;
 }
@@ -261,29 +289,43 @@ footer button {
 	color: white;
 }
 .dark-theme #input-bar {
-	box-shadow: 0px 0px 4px hsl(207, 26%, 17%);
-	border: 1px solid #06060636;
-	background-color: hsl(209, 23%, 22%);
+	box-shadow: var(--box-shadow-light);
+	border: var(--border-dark);
+	background-color: var(--background-color-items-dark);
 }
 .dark-theme #input-bar i {
 	color: white;
 }
 .dark-theme footer button {
-	border: 1px solid #06060636;
-	background-color: hsl(209, 23%, 22%);
-	box-shadow: 0px 0px 4px hsl(207, 26%, 17%);
+	border: var(--border-dark);
+	background-color: var(--background-color-items-dark);
+	box-shadow: var(--box-shadow-light);
 	color: white;
 }
 .dark-theme #back {
-	border: 1px solid #06060636;
+	border: var(--border-dark);
 	border-radius: 5px;
-	box-shadow: 0px 0px 4px hsl(207, 26%, 17%);
-	background-color: hsl(209, 23%, 22%);
+	box-shadow: var(--box-shadow-light);
+	background-color: var(--background-color-items-dark);
 	color: white;
 }
-body .dark-theme {
-	background-color: hsl(0, 0%, 98%);
-	color: hsl(200, 15%, 8%);
+
+.dark-theme .page-link {
+	background-color: var(--background-color-items-dark);
+	color: white;
+	border: var(--border-dark);
+}
+.dark-theme .page-link:focus,
+.dark-theme .page-link:hover {
+	box-shadow: 0px 0px 4px white;
+}
+.dark-theme #page-items {
+	box-shadow: var(--box-shadow-light);
+	border: var(--border-dark);
+}
+.dark-theme .active > .page-link {
+	background-color: white;
+	color: var(--background-color-dark);
 }
 .dark-theme .page-link{
 	background-color: hsl(209, 23%, 22%);
@@ -317,8 +359,8 @@ body .dark-theme {
 		padding: 1rem 3rem;
 	}
 }
-@media only screen and (min-width: 576px){
-	.container{
+@media only screen and (min-width: 576px) {
+	.container {
 		max-width: 90%;
 	}
 }
@@ -381,7 +423,7 @@ body .dark-theme {
 		object-position: center;
 		width: 100%;
 	}
-	#detail-body{
+	#detail-body {
 		display: flex;
 		justify-content: center;
 		flex-direction: column;
@@ -397,7 +439,7 @@ body .dark-theme {
 		width: 60%;
 		margin-top: 1.5rem;
 	}
-	.selected .contents{
+	.selected .contents {
 		width: 70%;
 		display: flex;
 		flex-direction: column;
@@ -432,7 +474,7 @@ body .dark-theme {
 	}
 }
 @media only screen and (min-width: 900px) {
-	.countryCard{
+	.countryCard {
 		gap: 3.5rem;
 	}
 }
@@ -440,13 +482,13 @@ body .dark-theme {
 	.selected {
 		gap: 4rem;
 	}
-	.selected .contents{
+	.selected .contents {
 		width: 50%;
 	}
 	.selected .detail {
 		width: 50%;
 	}
-	.selected #main{
+	.selected #main {
 		font-size: 0.95rem;
 		gap: 0.5rem;
 	}
@@ -460,8 +502,10 @@ body .dark-theme {
 	}
 	.countryCard {
 		gap: 4rem;
+		margin-left: 2rem;
+		justify-content: center;
 	}
-	.footer-buttons{
+	.footer-buttons {
 		font-size: 1rem;
 	}
 }
@@ -475,10 +519,14 @@ body .dark-theme {
 	}
 	form {
 		width: 35%;
-		margin-left: 4rem;
+		margin-left: 3.75rem;
+	}
+	.countryCard {
+		margin-left: 3.5rem;
+		justify-content: flex-start;
 	}
 	select {
 		width: 15%;
-		margin-right: 4rem;
+		margin-right: 4.5rem;
 	}
 }
