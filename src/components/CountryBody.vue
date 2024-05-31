@@ -1,51 +1,47 @@
 <template>
   <div class="container">
     <FilterBody @filter="updateFilter" />
-    <CardPage :filteredCountries="filteredCountries" :countriesData="countriesData" />
+    <CardPage :filteredCountries="filteredCountries" />
   </div>
 </template>
 
 <script>
+import { useCountryStore } from '@/store/index.js'; 
 import FilterBody from './FilterBody.vue';
-
 import CardPage from './CardPage.vue';
-export default {
-  name: "CountryBody",
-  components: {
-    CardPage,
-    FilterBody,
 
+
+export default {
+  name: 'CountryBody',
+  components: {
+    FilterBody,
+    CardPage,
   },
+  
   data() {
     return {
-      countriesData: [],
-      filteredCountries: [],
+      countryStore: useCountryStore(),
     };
   },
-  mounted() {
-    this.getData();
+
+  computed: {
+    filteredCountries() {
+      return this.countryStore.filteredCountries;
+    },
   },
+
+  mounted() {
+    this.updateData();
+  },
+
   methods: {
-    async getData() {
-      try {
-        if (this.countriesData.length === 0) {
-          const response = await fetch("https://restcountries.com/v3.1/all");
-          this.countriesData = await response.json();
-        }
-        this.updateFilter();
-      } catch (error) {
-        console.error(error);
-      }
-
+    async updateData() {
+      await this.countryStore.fetchData();
+      this.updateFilter();
     },
-    updateFilter({ search = "", region = "Filter by Region" } = {}) {
-      this.filteredCountries = this.countriesData.filter((country) => {
-        const searchMatch = country.name.common.toLowerCase().includes(search.toLowerCase());
-        const regionMatch = country.region.toLowerCase().includes(region.toLowerCase());
-        return searchMatch || regionMatch;
-      });
+    updateFilter({ search = '', region = 'Filter by Region' } = {}) {
+      this.countryStore.updateFilter({ search, region });
     },
-
   },
 };
 </script>
