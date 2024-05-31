@@ -55,4 +55,6 @@ export const useCountryStore = defineStore("country", {
 			return Math.ceil(this.filteredCountries.length / this.perPage);
 		},
 	},
+
+  
 });

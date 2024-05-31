@@ -69,3 +69,4 @@ export default {
     transition: 3s ease-in
 }
 </style>
+

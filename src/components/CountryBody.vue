@@ -8,10 +8,12 @@
         <h3>Oops...<span style='font-size:100px;'>&#128546;</span></h3>
         <p>No country data found</p>
       </div>
+
   </div>
 </template>
 
 <script>
+
 import { useCountryStore } from '@/store/index.js';
 import FilterBody from './FilterBody.vue';
 import CardPage from './CardPage.vue';
@@ -26,11 +28,19 @@ export default {
     PageNav
   },
 
+
   data() {
     return {
       countryStore: useCountryStore(),
     };
   },
+
+  computed: {
+    filteredCountries() {
+      return this.countryStore.filteredCountries;
+    },
+  },
+
   mounted() {
     this.countryStore.fetchData();
   },
