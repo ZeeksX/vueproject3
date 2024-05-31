@@ -1,9 +1,7 @@
 <template>
   <div class="container">
-    <FilterBody @filter="updateFilter" />
-    <CardPage :filteredCountries="paginatedCountries" />
-    <PageNav :currentPage="countryStore.currentPage" :totalPages="countryStore.totalPages"
-      @changePage="countryStore.changePage" />
+    <FilterBody @filter="updateFilter">
+    <CardPage :filteredCountries="filteredCountries" />
   </div>
 </template>
 
@@ -20,6 +18,7 @@ export default {
     FilterBody,
     CardPage,
     PageNav
+
   },
   
   data() {
@@ -33,6 +32,10 @@ export default {
       const start = (this.countryStore.currentPage - 1) * this.countryStore.perPage;
       const end = start + this.countryStore.perPage;
       return this.countryStore.filteredCountries.slice(start, end);
+
+    filteredCountries() {
+      return this.countryStore.filteredCountries;
+
     },
   },
 

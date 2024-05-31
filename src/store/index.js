@@ -25,6 +25,9 @@ export const useCountryStore = defineStore("country", {
         const regionMatch = country.region.toLowerCase().includes(region.toLowerCase());
         return searchMatch || regionMatch;
       });
+      // Reset currentPage to 1 when filter is updated
+      this.currentPage = 1;
+
     },
     changePage(page) {
       this.currentPage = page;
@@ -41,4 +44,5 @@ export const useCountryStore = defineStore("country", {
       return Math.ceil(this.filteredCountries.length / this.perPage);
     },
   },
+
 });
