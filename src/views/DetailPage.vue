@@ -156,19 +156,18 @@ export default {
             this.$router.go(-1);
         },
         getBorders(country) {
-            console.log("country borders: ", country)
             if (country.borders && Array.isArray(country.borders)) {
-                for (const borderCode of country.borders) {
-                    const borderCountry = useCountryStore().countriesData.find(c => c.cca3 === borderCode);
-                    if (borderCountry) {
+                country.borders.forEach(borderCountry => {
+                    if (borderCountry && borderCountry.name && borderCountry.name.common) {
                         this.buttons.push(borderCountry.name.common);
                     } else {
                         this.buttons.push("N/A");
                     }
-                }
+                });
             } else {
-                this.buttons.push("N/A")
+                this.buttons.push("N/A");
             }
+        
             return this.buttons;
         },
         updateCountryDetails(countryName) {
