@@ -12,7 +12,7 @@ export const useCountryStore = defineStore("country", {
 	actions: {
 		async fetchData() {
 			try {
-				const response = await fetch("https://restcountries.com/v3.1/all?fields=name,flags,population,region,borders,languages,capital,currencies,subregion");
+				const response = await fetch("https://restcountries.com/v3.1/all?fields=name,flags,population,region,borders,languages,capital,currencies,subregion,tld");
 				this.countriesData = await response.json();
 				this.filteredCountries = this.countriesData;
 				this.updateFilter();
