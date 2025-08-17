@@ -156,6 +156,7 @@ export default {
             this.$router.go(-1);
         },
         getBorders(country) {
+            console.log("country borders: ", country)
             if (country.borders && Array.isArray(country.borders)) {
                 for (const borderCode of country.borders) {
                     const borderCountry = useCountryStore().countriesData.find(c => c.cca3 === borderCode);
